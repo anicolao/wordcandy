@@ -10,12 +10,16 @@ export default defineConfig({
     use: {
         baseURL: 'http://localhost:5179',
         trace: 'on-first-retry',
+        viewport: { width: 393, height: 852 },
+        deviceScaleFactor: 1,
     },
     snapshotPathTemplate: '{testDir}/{testFileDir}/screenshots/{arg}.png',
     projects: [
         {
             name: 'chromium',
-            use: { ...devices['Desktop Chrome'] },
+            use: {
+                browserName: 'chromium',
+            },
         },
     ],
     webServer: {
