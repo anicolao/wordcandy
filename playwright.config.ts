@@ -11,6 +11,7 @@ export default defineConfig({
         baseURL: 'http://localhost:5179',
         trace: 'on-first-retry',
     },
+    snapshotPathTemplate: '{testDir}/{testFileDir}/screenshots/{arg}.png',
     projects: [
         {
             name: 'chromium',

@@ -31,26 +31,19 @@ export class TestStepHelper {
     }
 
     async step(name: string, options: StepOptions) {
-        const stepNum = String(this.stepCount).padStart(3, '0');
-        const filename = `${stepNum}-${name}.png`;
-
-        // Write to source directory based on test file location
-        const testDir = path.dirname(this.testInfo.file);
-        const screenshotPath = path.join(testDir, 'screenshots', filename);
-
-        // Ensure screenshots directory exists
-        const dir = path.dirname(screenshotPath);
-        if (!fs.existsSync(dir)) {
-            fs.mkdirSync(dir, { recursive: true });
-        }
-
-        // Capture screenshot
-        await this.page.screenshot({ path: screenshotPath });
-
-        // Run verifications
+        // Run verifications first
         for (const v of options.verifications) {
             await v.check();
         }
+
+        const stepNum = String(this.stepCount).padStart(3, '0');
+        const filename = `${stepNum}-${name}.png`;
+
+        // Zero-Pixel Tolerance: Verify against baseline
+        // Playwright will use snapshotPathTemplate to find/create the file at:
+        // tests/e2e/mvp/screenshots/000-01-landing.png
+
+        await expect(this.page).toHaveScreenshot(filename.replace(/\.png$/, ''));
 
         this.steps.push({ name, options });
         this.stepCount++;
