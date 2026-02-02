@@ -61,14 +61,17 @@
     
     .rack-slots {
         display: flex;
-        gap: 0.5rem;
+        gap: 4px; /* Reduced gap */
+        width: 100%;
+        justify-content: center;
     }
     
     .rack-slot {
-        width: 60px;
-        height: 60px;
+        flex: 1;
+        max-width: 45px; /* Prevent too big on desktop, fit on mobile */
+        aspect-ratio: 1; /* Keep square */
         background: rgba(255,255,255,0.1);
-        border-radius: 8px;
+        border-radius: 6px; /* Slightly smaller radius */
         border: 1px solid rgba(255,255,255,0.2);
     }
     
