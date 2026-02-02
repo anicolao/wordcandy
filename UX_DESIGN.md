@@ -20,7 +20,7 @@ The most distinct feature of WordCandy is the tiles.
 ## Mockup
 Here is the target visual fidelity for the main game board:
 
-![WordCandy Board Mockup](/Users/anicolao/.gemini/antigravity/brain/69185e08-497a-4468-bf19-e9bdf1028efd/wordcandy_board_mockup_1769987205365.png)
+![WordCandy Board Mockup](./assets/mockup.png)
 
 ## Responsiveness used
 - **Mobile First**: The board zooms and pans smoothly.
