@@ -17,10 +17,23 @@ The most distinct feature of WordCandy is the tiles.
 - **Feel**: Glossy, tactile, appetizing.
 - **Typography**: Crisp, high-contrast, sans-serif font printed "inside" the acrylic.
 
-## Mockup
-Here is the target visual fidelity for the main game board:
+## Concept Gallery
 
-![WordCandy iPhone Mockup](./assets/iphone_mockup.png)
+### 1. Board & Grid Overview
+The original board concept, showing the ideal grid structure and overall "on the table" feel. Note the faint neon grid lines and empty space for play.
+![Board Overview](./assets/mockup.png)
+
+### 2. Tile Aesthetic Detail
+A close-up look at the "hard candy" fidelity we want for the tiles. Note the inner glow and tactile jelly-like refraction.
+![Tile Detail](./assets/iphone_mockup.png)
+
+### 3. Mobile Gameplay Target
+The definitive gameplay mockup.
+- **Density**: 8 tiles across the screen width.
+- **Grid**: Clear, empty grid lines (no filler tiles) for unplayed spaces.
+- **Rack**: Distinct, floating rack area at the bottom.
+- **Controls**: Neon glass buttons below the rack.
+![Mobile Gameplay](./assets/iphone_gameplay.png)
 
 ## Responsiveness used
 - **Mobile First**: The board zooms and pans smoothly.
