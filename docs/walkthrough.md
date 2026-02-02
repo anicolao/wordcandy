@@ -20,7 +20,9 @@ I have implemented the Minimum Viable Product for WordCandy.
         - `tests/e2e/mvp/screenshots/`
 
 ## Verification Results
-- **E2E Test**: Passed.
+- **E2E Test**:
+    - **Requirement**: `npm run emulators` must be running.
+    - Test verifies: Sign In flow (Emulator), Guest View, and Gameplay.
     - Zero-pixel tolerance enforced via `Playwright`.
     - Artifacts generated in `tests/e2e/mvp/`.
     - `README.md` correctly links to committed screenshots.
