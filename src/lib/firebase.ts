@@ -6,19 +6,20 @@ import {
     signInWithPopup,
     onAuthStateChanged,
     signOut as firebaseSignOut,
+    connectAuthEmulator,
     type User
 } from "firebase/auth";
 import { writable } from "svelte/store";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyDWrBRQmuUsXbBafUL5nrZ34YbqQnXQZJk",
-    authDomain: "wordcandy-762b1.firebaseapp.com",
-    projectId: "wordcandy-762b1",
-    storageBucket: "wordcandy-762b1.firebasestorage.app",
-    messagingSenderId: "676984498397",
-    appId: "1:676984498397:web:27d8d2099da9868e925334",
-    measurementId: "G-VWGYXWPJLN"
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID,
+    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase (Singleton pattern)
@@ -40,6 +41,12 @@ export const initFirebase = () => {
     if (typeof window !== 'undefined') {
         analytics = getAnalytics(app);
         auth = getAuth(app);
+
+        // Connect to Auth Emulator in Dev
+        if (location.hostname === 'localhost') {
+            // Port 9099 is default for Auth Emulator
+            connectAuthEmulator(auth, "http://localhost:9099");
+        }
 
         onAuthStateChanged(auth, (u) => {
             user.set(u);

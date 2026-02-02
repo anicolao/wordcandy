@@ -50,5 +50,5 @@ We follow a strict rigorous process:
 
 ## 5. Development Tips
 
--   **Emulators**: We use Firebase Emulators for local development. `npm run emulators`.
+-   **Emulators**: We use Firebase Emulators for local development. Run `npm run emulators` in a separate terminal BEFORE running `npm run test:e2e`.
 -   **Reducers**: Logic lives in reducers. If the state is wrong, fix the reducer, don't patch the state.
