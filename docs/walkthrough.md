@@ -21,7 +21,9 @@ I have implemented the Minimum Viable Product for WordCandy.
 
 ## Verification Results
 - **E2E Test**: Passed.
-    - Artifacts generated and committed.
+    - Zero-pixel tolerance enforced via `Playwright`.
+    - Artifacts generated in `tests/e2e/mvp/`.
+    - `README.md` correctly links to committed screenshots.
     - See `tests/e2e/mvp/README.md` for visual verification.
 
 ## Next Steps
