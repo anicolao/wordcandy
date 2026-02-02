@@ -19,10 +19,15 @@ I have implemented the Minimum Viable Product for WordCandy.
         - `tests/e2e/mvp/README.md`
         - `tests/e2e/mvp/screenshots/`
 
+- **CI/CD**:
+    - `.github/workflows/playwright.yml`: GitHub Action to run E2E tests with Firebase Auth Emulator (`emulators:exec`).
+- **Documentation**:
+    - `docs/AUTH_SETUP.md`: Guide for configuring Auth domains for hosted deployments.
+
 ## Verification Results
 - **E2E Test**:
-    - **Requirement**: `npm run emulators` must be running.
-    - Test verifies: Sign In flow (Emulator), Guest View, and Gameplay.
+    - **Requirement**: `npm run emulators` must be running (handled automatically in CI).
+    - Checks: Sign In (Emulator), Lobby, Gameplay.
     - Zero-pixel tolerance enforced via `Playwright`.
     - Artifacts generated in `tests/e2e/mvp/`.
     - `README.md` correctly links to committed screenshots.
