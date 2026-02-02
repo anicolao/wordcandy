@@ -2,19 +2,18 @@
 
 **WordCandy** is a slick, premium mobile web application for playing competitive Duplicate Crossword. Built with modern web technologies, it offers a visually stunning "Nano Banana" aesthetic and a seamless real-time multiplayer experience.
 
-## The Game: Duplicate Crossword
+## The Game: Global Daily Challenge
 
-The goal is to outscore your opponents by finding the highest-scoring word on the board using a shared rack of letters.
+The goal is to outscore the world by finding the highest-scoring word on the board using a shared rack of letters.
 
 ### Core Rules
-- **7 Rounds** of play.
-- **Shared Rack:** Everyone plays with the *same* 8 letters.
-- **Secret Submission:** Players privately find their best word.
-- **The Reveal:** The highest-scoring word found by *any* player is placed on the main shared board.
-- **Scoring:** You get points for your own best word, even if it's not the one placed on the board!
-- **Strategy:** Length matters! Multiply your word score by the length of the longest word played. Note: The longest word played is the multiplier, not necessarily the longest word *you* played, but often it coincides. *Correction based on standard rules: It's the multiplier of the word you played.*
+- **Daily Challenge:** One global board, one shared rack of 8 letters per day.
+- **One Play:** Find your best word and submit it to the leaderboard.
+- **Global Consensus:** The highest-scoring word found by *any* player becomes the permanent play on the board for the next day.
+- **Scoring:** You get points for your own best word.
+- **Strategy:** Length matters! Multiply your word score by the length of the longest word you created.
 
-*(See [rules](./words/RULES.md) for the original gritty details)*
+*(See [rules](./RULES.md) for details)*
 
 ## Technology Stack
 
