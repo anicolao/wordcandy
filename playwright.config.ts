@@ -23,4 +23,9 @@ export default defineConfig({
         url: 'http://localhost:5179',
         reuseExistingServer: !process.env.CI,
     },
+    timeout: 60000,
+    expect: {
+        timeout: 5000,
+        toHaveScreenshot: { maxDiffPixels: 0 }
+    }
 });
