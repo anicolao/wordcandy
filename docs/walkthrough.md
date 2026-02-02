@@ -14,15 +14,15 @@ I have implemented the Minimum Viable Product for WordCandy.
     - `src/routes/play/+page.svelte`: Gameplay view.
     - `src/lib/components/game/Board.svelte`: 3D Board component.
 - **Testing**:
-    - Created `tests/e2e/mvp.spec.ts`.
-    - Verified functionality with `npm run test:e2e`.
+    - Created `tests/e2e/mvp/mvp.spec.ts` using `TestStepHelper`.
+    - Generated verification artifacts:
+        - `tests/e2e/mvp/README.md`
+        - `tests/e2e/mvp/screenshots/`
 
 ## Verification Results
 - **E2E Test**: Passed.
-    - Verified "WordCandy" title.
-    - Verified navigation to `/play`.
-    - Verified presence of Board and Rack.
-    - Verified Score display.
+    - Artifacts generated and committed.
+    - See `tests/e2e/mvp/README.md` for visual verification.
 
 ## Next Steps
 1.  Review the PR.
