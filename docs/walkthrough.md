@@ -7,10 +7,10 @@ I have implemented the Minimum Viable Product for WordCandy.
 - **Dependencies**: Added `three`, `@threlte/core`, `@reduxjs/toolkit`, `firebase`, `playwright`.
 - **Core Logic**:
     - `src/lib/store.ts`: Redux store with event sourcing middleware placeholder.
-    - `src/lib/firebase.ts`: Firebase configuration.
+    - `src/lib/firebase.ts`: Firebase configuration with Authentication support.
     - `src/lib/reducers/game.ts`: Game logic (score, rack, board).
 - **UI**:
-    - `src/routes/+page.svelte`: Daily Lobby.
+    - `src/routes/+page.svelte`: Daily Lobby with Sign-In/Sign-Out.
     - `src/routes/play/+page.svelte`: Gameplay view.
     - `src/lib/components/game/Board.svelte`: 3D Board component.
 - **Testing**:
