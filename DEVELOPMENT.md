@@ -17,6 +17,7 @@ We follow a strict rigorous process:
     *   Before writing implementation code, write a test that fails.
     *   **Unit Tests**: For logic (reducers, utils).
     *   **E2E Tests**: For features (user flows). See [E2E_GUIDE.md](./E2E_GUIDE.md) for our **Zero-Pixel Tolerance** policy.
+    *   **Note**: You MUST use the `TestStepHelper` to auto-generate standard screenshots and documentation (`README.md`) for every E2E test. Do not write raw Playwright tests without this wrapper.
 
 2.  **Design & Plan**:
     *   For complex features, write a design document in `docs/designs/`.
