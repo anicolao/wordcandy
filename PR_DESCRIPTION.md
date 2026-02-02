@@ -1,21 +1,33 @@
-Review the design of the duplicate game in the example words repository. Also review the food and admin repositories for development process.
+# WordCandy MVP Implementation
 
-From words, we want to learn about how to write reducers for the project, hwo to structure a svelte application, and how to use firebase for storage. 
+## User Requests
+> Read DEVELOPMENT.md and MVP_DESIGN.md and implement the MVP and corresponding e2e tests, put it up as a PR for me to review.
 
-From food, we want to study the e2e testing scheme, the requirement for zero tolerance on teh screenshots, and the workflow for submitting PRs.
+> words is not the target project. it is an example project you can use for reference, but you're meant to build a new (similar) thing in this top level folder, writing your own flake.nix and package.json as needed to install packages and software.
 
-From the admin repository, you should be able to learn how to make it htat we can develop against a local firebase emulator, or vs a staging environment or vs production. We'll want a similar setup for firestore for this project. 
+## Goal
+Implement the core Minimum Viable Product for WordCandy, a duplicate crossword daily challenge game.
 
-Write a DEVELOPMENT.md guide for developers (AI agents) working on this project to make it easy for them to understand the required steps, which are:
-1- write tests, both unit and e2e tests to validate their work; follow the E2E_GUIDE for details on zero-tolerance E2E testing;
-2- create a branch and push it up, writing a PR comment using gh for human review
-3- write design documetns in docs/designs to record any complex plans needed for implementing hte game;
-4- consider carefully what actions get stored in firestore, as the game should only record "facts on the ground" as described in the admin repositories' rules for how to do an event sourced application.
+## Changes
+- **Project Setup**:
+    - Added `flake.nix` for consistent dev environment.
+    - Added `package.json` with SvelteKit, Threlte, Redux, Firebase.
+    - Configured Vite and Playwright.
+- **Core Infrastructure**:
+    - Implemented `src/lib/store.ts` with Redux and Event Sourcing middleware.
+    - Implemented `src/lib/firebase.ts` for backend connection.
+    - Added "Nano Banana" design system in `src/lib/styles/app.css`.
+- **Features**:
+    - **Daily Lobby**: Homepage with "Play" button.
+    - **Gameplay**: `/play` route with 3D Board (Threlte) and Tile Rack.
+    - **Board**: Basic 3D grid and camera controls.
+- **Testing**:
+    - Added `tests/e2e/mvp.spec.ts` verifying the flow from Lobby to Gameplay.
+    - Configured Playwright to run on port 5179 to avoid conflicts.
+- **Documentation**:
+    - Added `docs/implementation_plan.md`.
+    - Added `docs/walkthrough.md`.
 
-DEVELOPMENT.md may link to E2E_GUIDE.md that you have to write as well as to EVENT_SOURCING.md to describe correct event sourcing style. 
-
-Also write an MVP_DESIGN.md document describing the absolute minimal product you could produce to form a basis for developing the full game.
-
----
-
-You need to also copy food/WORKFLOW.md adapting it for this project, and *follow it* for the change you're currently making so that I can see your work as a PR and not as open files in the local repo
+## Verification
+- Ran `npm run test:e2e` locally.
+- 1 test passed (MVP Walkthrough).
