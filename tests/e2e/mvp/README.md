@@ -1,12 +1,12 @@
 # Test: MVP Walkthrough
 
-## Initial Landing Page
+## Initial Landing Page (Guest)
 
-![Initial Landing Page](./screenshots/000-01-landing.png)
+![Initial Landing Page (Guest)](./screenshots/000-01-landing-guest.png)
 
 **Verifications:**
 - [x] Title is WordCandy
-- [x] Play button exists
+- [x] Sign In button exists
 
 ---
 
