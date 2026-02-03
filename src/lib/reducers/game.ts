@@ -29,11 +29,30 @@ const initialState: GameState = {
     submitted: false
 };
 
-// Helper: Shuffle array in place (Fisher-Yates)
-function shuffle<T>(array: T[]): T[] {
+// Helper: Simple Linear Congruential Generator for seeding
+class Seeder {
+    private seed: number;
+    constructor(seed: string) {
+        // Simple hash to convert string to number
+        let h = 0x811c9dc5;
+        for (let i = 0; i < seed.length; i++) {
+            h ^= seed.charCodeAt(i);
+            h = Math.imul(h, 0x01000193);
+        }
+        this.seed = h >>> 0;
+    }
+
+    random() {
+        this.seed = (this.seed * 1664525 + 1013904223) % 4294967296;
+        return this.seed / 4294967296;
+    }
+}
+
+// Helper: Shuffle array in place (Fisher-Yates) using custom RNG logic
+function shuffle<T>(array: T[], rng: () => number = Math.random): T[] {
     let currentIndex = array.length, randomIndex;
     while (currentIndex != 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
+        randomIndex = Math.floor(rng() * currentIndex);
         currentIndex--;
         [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
     }
@@ -44,8 +63,12 @@ const gameSlice = createSlice({
     name: 'game',
     initialState,
     reducers: {
-        initializeGame: (state, action: PayloadAction<{ playerIds: string[] }>) => {
+        initializeGame: (state, action: PayloadAction<{ playerIds: string[], seed?: string }>) => {
             console.log('REDUCER: initializeGame', action.payload);
+
+            // Setup RNG
+            const rng = action.payload.seed ? new Seeder(action.payload.seed).random.bind(new Seeder(action.payload.seed)) : Math.random;
+
             // 1. Create Bag
             const bag: Tile[] = [];
             if (!TILE_DISTRIBUTION) {
@@ -61,7 +84,7 @@ const gameSlice = createSlice({
                     });
                 }
             });
-            state.bag = shuffle(bag);
+            state.bag = shuffle(bag, rng);
             console.log('REDUCER: Bag created, size:', state.bag.length);
 
             // 2. Initialize Players
