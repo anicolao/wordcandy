@@ -1,13 +1,11 @@
 # Walkthrough - App Icon & PWA Setup
 
-I have implemented the "Single Tile Focus" app icon and configured WordCandy as a Progressive Web App (PWA).
+I have implemented the "Single Tile Focus" app icon (Refined Zoomed Version) and configured WordCandy as a Progressive Web App (PWA).
 
 ## Changes
 
 ### Assets
-
 Generated the following icons in `static/` from the selected concept:
-
 - `favicon.png` (32x32)
 - `apple-touch-icon.png` (180x180)
 - `android-chrome-192x192.png` (192x192)
@@ -16,9 +14,7 @@ Generated the following icons in `static/` from the selected concept:
 Created [manifest.webmanifest](file:///Users/anicolao/projects/antigravity/wordcandy/static/manifest.webmanifest) to define the app name, colors, and icons for installation.
 
 ### Configuration
-
 Updated [src/app.html](file:///Users/anicolao/projects/antigravity/wordcandy/src/app.html) to include:
-
 - `manifest.webmanifest` link.
 - Apple mobile web app meta tags for standalone mode.
 - `apple-touch-icon` link.
@@ -27,11 +23,9 @@ Updated [src/app.html](file:///Users/anicolao/projects/antigravity/wordcandy/src
 ## Verification Results
 
 ### Manual Verification
-
 - **Manifest**: Valid JSON format.
 - **HTML Structure**: Verified tags are correctly placed in the `<head>` of `app.html`.
-- **Assets**: Verified all icon files were generated successfully.
+- **Assets**: Verified all icon files were generated successfully from the refined concept.
 
 ### Next Steps
-
 - Deploy and test "Add to Home Screen" on a real device to verify the standalone experience and icon appearance.
