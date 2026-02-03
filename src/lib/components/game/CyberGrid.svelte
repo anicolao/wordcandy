@@ -7,6 +7,7 @@
   export let color = '#00ffff';
   export let backgroundColor = '#1a1a1a';
 
+  export let frozen = null; // New frozen prop
   let time = 0;
 
   const vertexShader = `
@@ -115,7 +116,11 @@
   `;
 
   useTask((delta) => {
-    time += delta;
+    if (frozen !== null) {
+      time = Number(frozen);
+    } else {
+      time += delta;
+    }
   });
 </script>
 

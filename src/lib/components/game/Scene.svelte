@@ -6,6 +6,7 @@
 
   export let gridSize = 15;
   export let rackMode = false;
+  export let frozen = null; // Pass frozen time down
 
   onMount(() => {
     console.log('SCENE MOUNTED', { rackMode });
@@ -35,7 +36,7 @@
 
 <!-- Cyber Background & Grid (Slightly below tiles at Y=0) -->
 <T.Group position={[0, -2, 0]}>
-    <CyberGrid color="#00ffff" backgroundColor="#1a1a1a" />
+    <CyberGrid color="#00ffff" backgroundColor="#1a1a1a" {frozen} />
 </T.Group>
 
 <!-- Environment for gloss reflections -->
