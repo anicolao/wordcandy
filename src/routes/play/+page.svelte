@@ -68,14 +68,14 @@
             <Canvas>
                 <Scene rackMode={true}>
                     {#each rack as tile, i}
-                        <!-- 4x2 Grid Layout Logic (Inline for Svelte < 3.46 compat) -->
+                        <!-- 4x2 Grid Layout Logic (Tabletop: Flat on XZ plane) -->
                         <Tile3D 
                             position={[
                                 ((i % 4) - 1.5) * 2.5, 
-                                (Math.floor(i / 4) * -2.5) + 1.25, 
-                                0
+                                0, 
+                                (Math.floor(i / 4) * 2.5) - 1.25
                             ]}
-                            rotation={[-Math.PI / 8, 0, 0]} 
+                            rotation={[-Math.PI / 2, 0, 0]} 
                             scale={2.0}
                             letter={tile.letter} 
                             value={tile.value}

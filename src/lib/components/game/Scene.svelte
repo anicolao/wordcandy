@@ -17,8 +17,8 @@
 {:else}
     <T.PerspectiveCamera 
         makeDefault 
-        position={[0, 15, 30]} 
-        fov={25} 
+        position={[0, 45, 0.1]} 
+        fov={20} 
         on:create={({ ref }) => ref.lookAt(0, 0, 0)}
     >
         <OrbitControls enableDamping target={[0, 0, 0]} />
@@ -33,8 +33,10 @@
 <T.SpotLight position={[0, 8, -5]} intensity={10.0} color="#00ffcc" angle={0.5} penumbra={0.5} decay={0} distance={20} />
 <T.AmbientLight intensity={1.0} />
 
-<!-- Cyber Background & Grid -->
-<CyberGrid color="#00ffff" backgroundColor="#1a1a1a" />
+<!-- Cyber Background & Grid (Slightly below tiles at Y=0) -->
+<T.Group position={[0, -2, 0]}>
+    <CyberGrid color="#00ffff" backgroundColor="#1a1a1a" />
+</T.Group>
 
 <!-- Environment for gloss reflections -->
 <T.Mesh position={[0, 10, -10]}>
