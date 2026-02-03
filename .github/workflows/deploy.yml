@@ -21,8 +21,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci
@@ -51,7 +51,7 @@ jobs:
           VITE_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.VITE_FIREBASE_MESSAGING_SENDER_ID }}
           VITE_FIREBASE_APP_ID: ${{ secrets.VITE_FIREBASE_APP_ID }}
           VITE_FIREBASE_MEASUREMENT_ID: ${{ secrets.VITE_FIREBASE_MEASUREMENT_ID }}
-      
+
       - name: Verify Secrets presence
         run: |
           if [ -z "${{ secrets.VITE_FIREBASE_API_KEY }}" ]; then
@@ -77,17 +77,17 @@ jobs:
             const prNumber = context.payload.pull_request.number;
             const previewUrl = `https://anicolao.github.io/wordcandy/pr${prNumber}/`;
             const comment = `🚀 Preview deployed to: ${previewUrl}\n\n⚠️ Ensure 'anicolao.github.io' is authorized in Firebase Auth settings.`;
-            
+
             const comments = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: prNumber
             });
-            
+
             const botComment = comments.data.find(c => 
               c.user.login === 'github-actions[bot]' && c.body.includes('Preview deployed to:')
             );
-            
+
             if (botComment) {
               await github.rest.issues.updateComment({
                 owner: context.repo.owner,

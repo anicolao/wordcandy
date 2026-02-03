@@ -8,15 +8,15 @@ Add the following secrets to your GitHub repository settings (`Settings` > `Secr
 
 You can find these values in your local `.env` file or in the Firebase Console under Project Settings.
 
-| Secret Name | Description |
-|---|---|
-| `VITE_FIREBASE_API_KEY` | Your Firebase API Key |
-| `VITE_FIREBASE_AUTH_DOMAIN` | Your Auth Domain (e.g., `wordcandy-762b1.firebaseapp.com`) |
-| `VITE_FIREBASE_PROJECT_ID` | Your Project ID |
-| `VITE_FIREBASE_STORAGE_BUCKET` | Your Storage Bucket |
-| `VITE_FIREBASE_MESSAGING_SENDER_ID` | Your Messaging Sender ID |
-| `VITE_FIREBASE_APP_ID` | Your App ID |
-| `VITE_FIREBASE_MEASUREMENT_ID` | Your Measurement ID |
+| Secret Name                         | Description                                                |
+| ----------------------------------- | ---------------------------------------------------------- |
+| `VITE_FIREBASE_API_KEY`             | Your Firebase API Key                                      |
+| `VITE_FIREBASE_AUTH_DOMAIN`         | Your Auth Domain (e.g., `wordcandy-762b1.firebaseapp.com`) |
+| `VITE_FIREBASE_PROJECT_ID`          | Your Project ID                                            |
+| `VITE_FIREBASE_STORAGE_BUCKET`      | Your Storage Bucket                                        |
+| `VITE_FIREBASE_MESSAGING_SENDER_ID` | Your Messaging Sender ID                                   |
+| `VITE_FIREBASE_APP_ID`              | Your App ID                                                |
+| `VITE_FIREBASE_MEASUREMENT_ID`      | Your Measurement ID                                        |
 
 ## 2. Firebase Authentication Settings
 
@@ -44,6 +44,6 @@ After pushing your changes and configuring the secrets:
 
 1.  A workflow run will start automatically.
 2.  Once completed, valid links will be:
-    *   **Main**: `https://anicolao.github.io/wordcandy`
-    *   **PRs**: Check the PR comments for a preview link (e.g., `.../wordcandy/pr12/`).
+    - **Main**: `https://anicolao.github.io/wordcandy`
+    - **PRs**: Check the PR comments for a preview link (e.g., `.../wordcandy/pr12/`).
 3.  Visit the URL and attempt to **Sign in with Google**. If the popup opens and you can sign in, the configuration is correct.

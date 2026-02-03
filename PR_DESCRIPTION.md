@@ -1,10 +1,10 @@
 ## User Request
-We have the beginnings of a word game in this repository. Currently, it can be deployed to firebase hosting and that should work fine; but I also want to be able to have it build and deploy to github pages very much like the food/ example repository, so that I can review individual PRs and look at main by going to https://anicolao.github.io/wordcandy or https://anicolao.github.io/wordcandy/prNN where prNN would be for example pr12 for PR#12.
 
-The workflows to build and deploy in this environment need to be set up, and I'll need a configuration guide for setting up GH pages secrets so that firebase will work, and that configuration guide should also specify what I need to do to enable firebase auth to work on this new URL. Implement all of that following WORKFLOW.md to put up a PR for my review.
+It looks like we're usign the food favicon for the game! Oops. We need to generate an app icon for when the user bookmarks it to the homescreen that's appropriate for our word game. Come up with 2-3 concepts and show them to me for us to choose an application icon and then use food as an example for how to set it up so that the web app looks professionally installed once we bookmark it to the homescreen. Let's start by reviewing concept art to pick an icon to focus on; try using image generation to generate three examples, providing mockups from UX_DESIGN.md as inspiration.
 
 ## Changes
-- Updated `svelte.config.js` to use `adapter-static` and support dynamic base paths.
-- Added `.github/workflows/deploy.yml` for automated deployment to GitHub Pages (main branch) and preview deployments (PRs).
-- Created `docs/CONFIGURATION_GUIDE.md` detailing how to set up secrets and Firebase Auth.
-- Moved `implementation_plan.md` to `docs/`.
+
+- Generated new app icons (favicon, apple-touch-icon, android-chrome icons).
+- Added `manifest.webmanifest`.
+- Configured `src/app.html` for PWA support (standalone mode, status bar).
+- Included documentation artifacts in `docs/`.
