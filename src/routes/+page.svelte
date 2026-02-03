@@ -1,6 +1,7 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     import { user, initFirebase, signInWithGoogle, signOut } from '$lib/firebase';
+    import { base } from '$app/paths';
 
     onMount(() => {
         initFirebase();
@@ -15,7 +16,7 @@
         {#if $user}
             <div style="display: flex; flex-direction: column; gap: 1rem; align-items: center;">
                 <p>Welcome, {$user.displayName}!</p>
-                <a href="/play" class="btn-primary" style="
+                <a href="{base}/play" class="btn-primary" style="
                     background: var(--color-banana-yellow);
                     color: black;
                     padding: 10px 30px;
