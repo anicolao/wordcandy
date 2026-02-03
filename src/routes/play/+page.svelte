@@ -15,9 +15,17 @@
     $: player = uid && game?.players ? game.players[uid] : null;
     $: rack = player ? player.rack : [];
     
+    // E2E Hooks
+    $: frozenTime = $page.url.searchParams.get('frozen');
+    $: seed = $page.url.searchParams.get('seed');
+
     onMount(() => {
         if (uid && (!game?.players || !game.players[uid])) {
-             store.dispatch(initializeGame({ playerIds: [uid] }));
+             const initPayload = { 
+                 playerIds: [uid],
+                 seed: seed || undefined
+             };
+             store.dispatch(initializeGame(initPayload));
             // Draw initial tiles
             store.dispatch(drawTiles({ playerId: uid }));
         }
@@ -31,7 +39,7 @@
     // Debug State
     let debugColor = "#FFE135";
     let debugOpacity = 0.4;
-    $: frozenTime = $page.url.searchParams.get('frozen');
+    // frozenTime moved up
     let debugIntensity = 0.5;
     let showControls = true;
 </script>

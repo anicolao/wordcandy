@@ -6,8 +6,8 @@ test('MVP Walkthrough', async ({ page }, testInfo) => {
     tester.setMetadata('MVP Walkthrough', 'Verify the core MVP flows: Landing, Sign-In, Lobby, and Gameplay.');
 
     // 1. Visit Play (Direct Access for MVP Local Dev)
-    // Freeze animation at 10s for consistent screenshots
-    await page.goto('/play?frozen=10');
+    // Freeze animation at 10s and seed RNG for consistent screenshots
+    await page.goto('/play?frozen=10&seed=123');
 
     // 2. Verify Gameplay Elements
     await tester.step('02-gameplay', {
