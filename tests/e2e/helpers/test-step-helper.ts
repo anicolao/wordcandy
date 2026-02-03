@@ -42,10 +42,10 @@ export class TestStepHelper {
         // 3. Stabilization: Wait for Network Sync (if present)
         // (Skipping network sync checks for WordCandy MVP as elements don't exist yet)
 
-        // 4. Capture & Verify (2% Tolerance for Cross-Platform WebGL)
+        // 4. Capture & Verify (Zero-Pixel Tolerance)
         // This will check against the baseline in 'screenshots/{filename}'.
         // If the file doesn't exist, it will fail (unless --update-snapshots is used).
-        await expect(this.page).toHaveScreenshot(filename.replace(/\.png$/, ''), { maxDiffPixelRatio: 0.02 });
+        await expect(this.page).toHaveScreenshot(filename.replace(/\.png$/, ''));
 
         // 5. Record for Docs
         this.steps.push({
