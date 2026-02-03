@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { T, useTask } from '@threlte/core';
   import { Color, DoubleSide } from 'three';
 
@@ -7,7 +7,7 @@
   export let color = '#00ffff';
   export let backgroundColor = '#1a1a1a';
 
-  export let frozen = null; // New frozen prop
+  export let frozen: string | null = null; // New frozen prop
   let time = 0;
 
   const vertexShader = `

@@ -1,13 +1,13 @@
-<script>
+<script lang="ts">
   import { T } from '@threlte/core';
   import { Text } from '@threlte/extras';
   import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
 
   export let letter = '';
   export let value = 0;
-  export let position = [0, 0, 0];
-  export let rotation = [0, 0, 0];
-  export let scale = 1;
+  export let position: [number, number, number] = [0, 0, 0];
+  export let rotation: [number, number, number] = [0, 0, 0];
+  export let scale: number | [number, number, number] = 1;
   export let color = "#FFE135"; // Default Banana Yellow
   export let opacity = 0.4; // Default Inner Glow Opacity
   export let intensity = 0.5; // Default Internal Light Intensity
