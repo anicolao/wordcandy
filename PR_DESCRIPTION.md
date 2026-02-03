@@ -1,10 +1,9 @@
 ## User Request
-
-It looks like we're usign the food favicon for the game! Oops. We need to generate an app icon for when the user bookmarks it to the homescreen that's appropriate for our word game. Come up with 2-3 concepts and show them to me for us to choose an application icon and then use food as an example for how to set it up so that the web app looks professionally installed once we bookmark it to the homescreen. Let's start by reviewing concept art to pick an icon to focus on; try using image generation to generate three examples, providing mockups from UX_DESIGN.md as inspiration.
+The icon looks great on my homescreen. But the URL that gets bookmarked is wrong, it's https://anicolao.github.io/ (it is missing /wordcandy) and the name of the game should be "Word Candy" as two words. Let's make a new PR that fixes these issues and push it up to gh.
 
 ## Changes
-
-- Generated new app icons (favicon, apple-touch-icon, android-chrome icons).
-- Added `manifest.webmanifest`.
-- Configured `src/app.html` for PWA support (standalone mode, status bar).
-- Included documentation artifacts in `docs/`.
+- Updated `manifest.webmanifest`:
+    - Changed `name` and `short_name` to "Word Candy".
+    - Changed `start_url` to `.` to support subdirectories (like `/wordcandy/`).
+- Updated `src/app.html`:
+    - Changed `apple-mobile-web-app-title` to "Word Candy".
