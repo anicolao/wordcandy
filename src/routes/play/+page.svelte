@@ -36,12 +36,16 @@
             store.dispatch(drawTiles({ playerId: uid }));
         }
     }
-    // Debug State
+    
+    let camPos: [number, number, number] = [0, 15, 0.1];
+    let camFov = 20;
+    
+    // Debug State - Visuals
     let debugColor = "#FFE135";
     let debugOpacity = 0.4;
-    // frozenTime moved up
-    let debugIntensity = 0.5;
-    let showControls = true;
+    let showControls = false;
+
+    // Inputs are bound directly to camPos indices, and camPos is 2-way bound to Scene.
 </script>
 
 <div class="game-container">
@@ -52,17 +56,39 @@
 
     <!-- Debug Controls -->
     {#if showControls}
-        <div class="debug-panel" style="position: absolute; top: 60px; right: 10px; z-index: 100; background: rgba(0,0,0,0.8); padding: 10px; border-radius: 8px; color: white;">
+        <div class="debug-panel" style="position: absolute; top: 60px; right: 10px; z-index: 100; background: rgba(0,0,0,0.8); padding: 10px; border-radius: 8px; color: white; display: flex; flex-direction: column; gap: 5px;">
+            <strong>Visuals</strong>
             <div>
                 <label>Color: <input type="color" bind:value={debugColor}></label>
             </div>
             <div>
                 <label>Opacity: <input type="range" min="0" max="1" step="0.1" bind:value={debugOpacity}></label> {debugOpacity}
             </div>
-            <button on:click={() => debugColor = "#FFE135"}>Banana (Yellow)</button>
-            <button on:click={() => debugColor = "#FFA500"}>Orange</button>
-            <button on:click={() => debugColor = "#00FF00"}>Green</button>
-             <button on:click={() => debugColor = "#FFFFFF"}>White</button>
+            <div style="display: flex; gap: 5px;">
+                <button on:click={() => debugColor = "#FFE135"}>🍌</button>
+                <button on:click={() => debugColor = "#FFA500"}>🍊</button>
+                <button on:click={() => debugColor = "#00FF00"}>🍏</button>
+                <button on:click={() => debugColor = "#FFFFFF"}>⚪</button>
+            </div>
+            
+            <hr style="width: 100%; border-color: #444;">
+            
+            <strong>Camera</strong>
+            <div>
+                 <label>X: <input type="number" step="0.5" bind:value={camPos[0]} style="width: 50px; color: black;"></label>
+            </div>
+            <div>
+                 <label>Y: <input type="number" step="0.5" bind:value={camPos[1]} style="width: 50px; color: black;"></label>
+            </div>
+            <div>
+                 <label>Z: <input type="number" step="0.5" bind:value={camPos[2]} style="width: 50px; color: black;"></label>
+            </div>
+            <div>
+                 <label>FOV: <input type="range" min="10" max="90" bind:value={camFov}></label> {camFov}
+            </div>
+            <div>
+                <button on:click={() => { camPos=[0, 20, 0.1]; camFov=20; }}>Reset Cam</button>
+            </div>
         </div>
     {/if}
 
@@ -76,7 +102,12 @@
     <div class="rack-area glass-panel">
         <div class="rack-3d-container">
             <Canvas>
-                <Scene rackMode={true} frozen={frozenTime}>
+                <Scene 
+                    rackMode={true} 
+                    frozen={frozenTime}
+                    bind:cameraPosition={camPos}
+                    bind:cameraFov={camFov}
+                >
                     {#each rack as tile, i}
                         <!-- 4x2 Grid Layout Logic (Tabletop: Flat on XZ plane) -->
                         <Tile3D 
