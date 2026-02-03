@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import type { Middleware } from '@reduxjs/toolkit';
 import { gameReducer } from './reducers/game';
+import { authReducer } from './reducers/auth';
 import { writable } from 'svelte/store';
 
 // Event Sourcing Middleware (Simplified for MVP)
@@ -22,10 +23,12 @@ const eventSourcingMiddleware: Middleware = store => next => action => {
 function createStore() {
     const store = configureStore({
         reducer: {
-            game: gameReducer
+            game: gameReducer,
+            auth: authReducer
         },
         middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(eventSourcingMiddleware)
     });
+
 
     const { subscribe } = writable(store.getState(), (set) => {
         const unsubscribe = store.subscribe(() => {
