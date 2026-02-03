@@ -53,48 +53,62 @@
         float lineIdY = floor(gridUV.y);
         // Randomize speed and start time per line
         float randomOffset = hash(lineIdY * 12.34);
-        float speed = 1.0 + hash(lineIdY * 45.67);
         
-        // Cycle: Spark every ~3-5 seconds
-        float cycleDur = 3.0 + randomOffset * 2.0;
+        // Cycle: Spark every ~16 seconds (Much Slower)
+        float cycleDur = 14.0 + randomOffset * 5.0;
         float localTime = uTime + randomOffset * 10.0;
         float cyclePhase = mod(localTime, cycleDur);
         
-        // If in active phase (first 1.2s)
-        if (cyclePhase < 1.2) {
-             float progress = cyclePhase / 1.2; // 0 to 1 over 1.2s
-             float sparkPos = progress * uGridSize; // Move across grid
+        // Active phase: Move across grid in ~3.0s
+        float activeTime = 3.0; 
+        
+        if (cyclePhase < activeTime) {
+             float progress = cyclePhase / activeTime; 
+             float sparkPos = progress * uGridSize; 
              
              // Distance from current pixel X to spark head
              float dist = gridUV.x - sparkPos;
              
-             // Tail length 2.0 cells
-             if (dist < 0.0 && dist > -5.0) {
-                 float intensity = 1.0 - (abs(dist) / 5.0);
-                 sparkInterest += intensity * linesY; // Only light up the horizontal line
+             // Spark Head (Short & Bright) + Fade Tail (Very Long & Glowing)
+             if (dist < 0.0 && dist > -40.0) { // Extended tail range
+                 float d = abs(dist);
+                 
+                 // Head: Intense burst for 1 unit
+                 float head = smoothstep(1.0, 0.0, d) * 8.0; // Brighter head
+                 
+                 // Tail: Slower decay for longer trail
+                 // exp(-d * 0.1) means it stays visible for much longer distance
+                 float tail = exp(-d * 0.1) * 3.0; // Brighter tail base
+                 
+                 float intensity = max(head, tail);
+                 sparkInterest += intensity * linesY; 
              }
         }
         
         // Vertical Sparks (move along Y, distinct X lines)
         float lineIdX = floor(gridUV.x);
         float randomOffsetX = hash(lineIdX * 67.89);
-        float cycleDurX = 4.0 + randomOffsetX * 3.0;
+        float cycleDurX = 7.0 + randomOffsetX * 5.0; // Different timing for variety
         float localTimeX = uTime + randomOffsetX * 10.0;
         float cyclePhaseX = mod(localTimeX, cycleDurX);
         
-        if (cyclePhaseX < 1.4) {
-             float progress = cyclePhaseX / 1.4;
+        if (cyclePhaseX < activeTime) {
+             float progress = cyclePhaseX / activeTime;
              float sparkPos = progress * uGridSize;
              float dist = gridUV.y - sparkPos;
-             if (dist < 0.0 && dist > -5.0) {
-                 float intensity = 1.0 - (abs(dist) / 5.0);
+             
+             if (dist < 0.0 && dist > -20.0) {
+                 float d = abs(dist);
+                 float head = smoothstep(1.0, 0.0, d) * 5.0;
+                 float tail = exp(-d * 0.2) * 2.0;
+                 float intensity = max(head, tail);
                  sparkInterest += intensity * linesX;
              }
         }
 
         // Compostion
-        vec3 finalColor = mix(uBgColor, uColor, grid * 0.3); // Dim base grid
-        finalColor += uColor * sparkInterest * 2.0; // Bright sparks (HDR-ish)
+        vec3 finalColor = mix(uBgColor, uColor, grid * 0.2); // Dimmer base grid
+        finalColor += uColor * sparkInterest; // Additive glow
 
         gl_FragColor = vec4(finalColor, 1.0);
     }
