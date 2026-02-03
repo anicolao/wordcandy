@@ -1,33 +1,10 @@
-# WordCandy MVP Implementation
+## User Request
+We have the beginnings of a word game in this repository. Currently, it can be deployed to firebase hosting and that should work fine; but I also want to be able to have it build and deploy to github pages very much like the food/ example repository, so that I can review individual PRs and look at main by going to https://anicolao.github.io/wordcandy or https://anicolao.github.io/wordcandy/prNN where prNN would be for example pr12 for PR#12.
 
-## User Requests
-> Read DEVELOPMENT.md and MVP_DESIGN.md and implement the MVP and corresponding e2e tests, put it up as a PR for me to review.
-
-> words is not the target project. it is an example project you can use for reference, but you're meant to build a new (similar) thing in this top level folder, writing your own flake.nix and package.json as needed to install packages and software.
-
-## Goal
-Implement the core Minimum Viable Product for WordCandy, a duplicate crossword daily challenge game.
+The workflows to build and deploy in this environment need to be set up, and I'll need a configuration guide for setting up GH pages secrets so that firebase will work, and that configuration guide should also specify what I need to do to enable firebase auth to work on this new URL. Implement all of that following WORKFLOW.md to put up a PR for my review.
 
 ## Changes
-- **Project Setup**:
-    - Added `flake.nix` for consistent dev environment.
-    - Added `package.json` with SvelteKit, Threlte, Redux, Firebase.
-    - Configured Vite and Playwright.
-- **Core Infrastructure**:
-    - Implemented `src/lib/store.ts` with Redux and Event Sourcing middleware.
-    - Implemented `src/lib/firebase.ts` for backend connection.
-    - Added "Nano Banana" design system in `src/lib/styles/app.css`.
-- **Features**:
-    - **Daily Lobby**: Homepage with "Play" button.
-    - **Gameplay**: `/play` route with 3D Board (Threlte) and Tile Rack.
-    - **Board**: Basic 3D grid and camera controls.
-- **Testing**:
-    - Added `tests/e2e/mvp.spec.ts` verifying the flow from Lobby to Gameplay.
-    - Configured Playwright to run on port 5179 to avoid conflicts.
-- **Documentation**:
-    - Added `docs/implementation_plan.md`.
-    - Added `docs/walkthrough.md`.
-
-## Verification
-- Ran `npm run test:e2e` locally.
-- 1 test passed (MVP Walkthrough).
+- Updated `svelte.config.js` to use `adapter-static` and support dynamic base paths.
+- Added `.github/workflows/deploy.yml` for automated deployment to GitHub Pages (main branch) and preview deployments (PRs).
+- Created `docs/CONFIGURATION_GUIDE.md` detailing how to set up secrets and Firebase Auth.
+- Moved `implementation_plan.md` to `docs/`.
