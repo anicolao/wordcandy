@@ -1,24 +1,17 @@
 export const TILE_DISTRIBUTION: Record<string, number> = {
-    // Blanks
-    '_': 2,
-    // Vowels
-    'A': 9, 'E': 12, 'I': 9, 'O': 8, 'U': 4,
-    // Consonants
-    'B': 2, 'C': 2, 'D': 4, 'F': 2, 'G': 3,
-    'H': 2, 'J': 1, 'K': 1, 'L': 4, 'M': 2,
-    'N': 6, 'P': 2, 'Q': 1, 'R': 6, 'S': 4,
-    'T': 6, 'V': 2, 'W': 2, 'X': 1, 'Y': 2,
-    'Z': 1
+    // Custom Distribution
+    "A": 7, "B": 2, "C": 4, "D": 4, "E": 11, "F": 2, "G": 3,
+    "H": 3, "I": 8, "J": 1, "K": 1, "L": 5, "M": 3, "N": 6,
+    "O": 6, "P": 3, "Q": 1, "R": 7, "S": 9, "T": 6, "U": 3,
+    "V": 1, "W": 1, "X": 1, "Y": 2, "Z": 1
 };
 
 export const TILE_VALUES: Record<string, number> = {
-    '_': 0,
-    'A': 1, 'B': 3, 'C': 3, 'D': 2, 'E': 1,
-    'F': 4, 'G': 2, 'H': 4, 'I': 1, 'J': 8,
-    'K': 5, 'L': 1, 'M': 3, 'N': 1, 'O': 1,
-    'P': 3, 'Q': 10, 'R': 1, 'S': 1, 'T': 1,
-    'U': 1, 'V': 4, 'W': 4, 'X': 8, 'Y': 4,
-    'Z': 10
+    // Custom Values
+    "A": 1, "B": 2, "C": 2, "D": 2, "E": 1, "F": 3, "G": 2,
+    "H": 2, "I": 1, "J": 5, "K": 3, "L": 1, "M": 2, "N": 1,
+    "O": 1, "P": 2, "Q": 5, "R": 1, "S": 1, "T": 1, "U": 2,
+    "V": 3, "W": 3, "X": 4, "Y": 3, "Z": 4
 };
 
 export const RACK_CAPACITY = 8;
