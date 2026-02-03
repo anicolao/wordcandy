@@ -17,7 +17,7 @@
 {:else}
     <T.PerspectiveCamera 
         makeDefault 
-        position={[0, 45, 0.1]} 
+        position={[0, 20, 0.1]} 
         fov={20} 
         on:create={({ ref }) => ref.lookAt(0, 0, 0)}
     >
