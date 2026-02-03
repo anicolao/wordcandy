@@ -27,6 +27,10 @@
             store.dispatch(drawTiles({ playerId: uid }));
         }
     }
+    // Debug State
+    let debugColor = "#FFE135";
+    let debugOpacity = 0.4;
+    let showControls = true;
 </script>
 
 <div class="game-container">
@@ -34,6 +38,22 @@
         <h2 class="neon-text" style="margin: 0;">Daily Challenge</h2>
         <div class="score">Score: {player?.score || 0}</div>
     </header>
+
+    <!-- Debug Controls -->
+    {#if showControls}
+        <div class="debug-panel" style="position: absolute; top: 60px; right: 10px; z-index: 100; background: rgba(0,0,0,0.8); padding: 10px; border-radius: 8px; color: white;">
+            <div>
+                <label>Color: <input type="color" bind:value={debugColor}></label>
+            </div>
+            <div>
+                <label>Opacity: <input type="range" min="0" max="1" step="0.1" bind:value={debugOpacity}></label> {debugOpacity}
+            </div>
+            <button on:click={() => debugColor = "#FFE135"}>Banana (Yellow)</button>
+            <button on:click={() => debugColor = "#FFA500"}>Orange</button>
+            <button on:click={() => debugColor = "#00FF00"}>Green</button>
+             <button on:click={() => debugColor = "#FFFFFF"}>White</button>
+        </div>
+    {/if}
 
     <div class="board-area">
         <!-- <Board /> -->
@@ -47,13 +67,19 @@
             <Canvas>
                 <Scene rackMode={true}>
                     {#each rack as tile, i}
-                        <!-- Position calculations: centered, with gap -->
+                        <!-- 4x2 Grid Layout Logic (Inline for Svelte < 3.46 compat) -->
                         <Tile3D 
-                            position={[(i - 3.5) * 2.5, 0, 0]}
+                            position={[
+                                ((i % 4) - 1.5) * 2.5, 
+                                (Math.floor(i / 4) * -2.5) + 1.25, 
+                                0
+                            ]}
                             rotation={[-Math.PI / 8, 0, 0]} 
                             scale={2.0}
                             letter={tile.letter} 
-                            value={tile.value} 
+                            value={tile.value}
+                            color={debugColor}
+                            opacity={debugOpacity}
                         />
                     {/each}
                  </Scene>
