@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { T } from '@threlte/core';
   import { onMount } from 'svelte';
   import { OrbitControls } from '@threlte/extras';
@@ -6,10 +6,15 @@
 
   export let gridSize = 15;
   export let rackMode = false;
-  export let frozen = null; // Pass frozen time down
+  export let frozen: string | null = null; // Pass frozen time down
+  
+  // Camera Controls
+  export let cameraPosition: [number, number, number] = [0, 15, 0.1];
+  export let cameraFov = 20;
+  export let cameraLookAt: [number, number, number] = [0, 0, 0];
 
   onMount(() => {
-    console.log('SCENE MOUNTED', { rackMode });
+    console.log('SCENE MOUNTED', { rackMode, cameraPosition, cameraFov });
   });
 </script>
 
@@ -18,11 +23,25 @@
 {:else}
     <T.PerspectiveCamera 
         makeDefault 
-        position={[0, 20, 0.1]} 
-        fov={20} 
-        on:create={({ ref }) => ref.lookAt(0, 0, 0)}
+        position={cameraPosition} 
+        fov={cameraFov}
+        on:create={({ ref }) => {
+            ref.lookAt(...cameraLookAt);
+        }}
     >
-        <OrbitControls enableDamping target={[0, 0, 0]} />
+        <OrbitControls 
+            enableDamping 
+            target={cameraLookAt} 
+            on:change={({ target }) => {
+                // target is OrbitControls instance. target.object is the camera.
+                const cam = target.object;
+                cameraPosition = [cam.position.x, cam.position.y, cam.position.z];
+                // FOV might not change with OrbitControls unless zoomed? 
+                // Actually OrbitControls dolly changes position, not FOV usually.
+                // But let's sync it just in case.
+                if (cam.fov) cameraFov = cam.fov;
+            }}
+        />
     </T.PerspectiveCamera>
 {/if}
 
