@@ -2,6 +2,7 @@
   import { T } from '@threlte/core';
   import { onMount } from 'svelte';
   import { OrbitControls } from '@threlte/extras';
+  import CyberGrid from './CyberGrid.svelte';
 
   export let gridSize = 15;
   export let rackMode = false;
@@ -16,8 +17,8 @@
 {:else}
     <T.PerspectiveCamera 
         makeDefault 
-        position={[0, 8, 12]} 
-        fov={45} 
+        position={[0, 15, 30]} 
+        fov={25} 
         on:create={({ ref }) => ref.lookAt(0, 0, 0)}
     >
         <OrbitControls enableDamping target={[0, 0, 0]} />
@@ -32,10 +33,8 @@
 <T.SpotLight position={[0, 8, -5]} intensity={10.0} color="#00ffcc" angle={0.5} penumbra={0.5} decay={0} distance={20} />
 <T.AmbientLight intensity={1.0} />
 
-<!-- Refraction Background: GridHelper for visual distortion -->
-<T.Group position={[0, -1, -2]} rotation={[0, 0, 0]}>
-    <T.GridHelper args={[30, 30, 0x444444, 0x222222]} rotation={[Math.PI/4, 0, 0]} />
-</T.Group>
+<!-- Cyber Background & Grid -->
+<CyberGrid color="#00ffff" backgroundColor="#1a1a1a" />
 
 <!-- Environment for gloss reflections -->
 <T.Mesh position={[0, 10, -10]}>
