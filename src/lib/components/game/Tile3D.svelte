@@ -10,9 +10,11 @@
   export let scale = 1;
   export let color = "#FFE135"; // Default Banana Yellow
   export let opacity = 0.4; // Default Inner Glow Opacity
+  export let intensity = 0.5; // Default Internal Light Intensity
 
   // Reactive material props to ensure updates work
   $: materialOpacity = Number(opacity);
+  $: transmission = 1 - materialOpacity; // Opacity 1 = Solid (0 trans), Opacity 0 = Clear (1 trans)
 
   // Thicker "Hard Candy" geometry with rounder corners
   // Radius reduced to 0.12 for "sharper dropoff" as requested
@@ -28,19 +30,20 @@
   </T.Mesh>
 
   <!-- Tile Base: High Refraction Acrylic -->
+  <!-- Transmission controls "glassiness". High Opacity = Low Transmission -->
   <T.Mesh {geometry}>
     <T.MeshPhysicalMaterial
-      color="#ffffff"
-      transmission={0.99}
+      color={color}
+      transmission={transmission}
       opacity={1}
       metalness={0.0}
-      roughness={0.0}
+      roughness={0.1}
       ior={1.5}
       thickness={1.5}
       attenuationColor={color}
       attenuationDistance={1.2}
       clearcoat={1.0}
-      clearcoatRoughness={0.0}
+      clearcoatRoughness={0.1}
       envMapIntensity={2.0}
     />
   </T.Mesh>
