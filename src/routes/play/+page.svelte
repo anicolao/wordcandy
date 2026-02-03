@@ -1,6 +1,9 @@
 <script lang="ts">
     import { onMount } from 'svelte';
+    import { Canvas } from '@threlte/core'; // Import Canvas
     import Board from '$lib/components/game/Board.svelte';
+    import Scene from '$lib/components/game/Scene.svelte';
+    import Tile3D from '$lib/components/game/Tile3D.svelte';
     import { store } from '$lib/store';
     import { initializeGame, drawTiles } from '$lib/reducers/game';
     
@@ -10,7 +13,7 @@
     $: game = $store.game;
     $: player = uid && game?.players ? game.players[uid] : null;
     $: rack = player ? player.rack : [];
-
+    
     onMount(() => {
         if (uid && (!game?.players || !game.players[uid])) {
              store.dispatch(initializeGame({ playerIds: [uid] }));
@@ -20,7 +23,6 @@
     });
 
     function handleDraw() {
-
         if (uid) {
             store.dispatch(drawTiles({ playerId: uid }));
         }
@@ -35,11 +37,31 @@
 
     <div class="board-area">
         <!-- <Board /> -->
+        <!-- Placeholder retained for stability while focused on Rack -->
         <div class="board-wrapper" style="color: white; background: #333; height: 60vh; border-radius: 12px;">Board Placeholder</div>
     </div>
 
+    <!-- 3D Rack Area -->
     <div class="rack-area glass-panel">
-        <div class="rack-slots">
+        <div class="rack-3d-container">
+            <Canvas>
+                <Scene rackMode={true}>
+                    {#each rack as tile, i}
+                        <!-- Position calculations: centered, with gap -->
+                        <Tile3D 
+                            position={[(i - 3.5) * 2.5, 0, 0]}
+                            rotation={[-Math.PI / 8, 0, 0]} 
+                            scale={2.0}
+                            letter={tile.letter} 
+                            value={tile.value} 
+                        />
+                    {/each}
+                 </Scene>
+            </Canvas>
+        </div>
+
+        <!-- Hidden accessible HTML rack for E2E tests and screen readers -->
+        <div class="rack-slots accessible-hidden">
             {#each Array(8) as _, i}
                 <div class="rack-slot">
                     {#if rack[i]}
@@ -81,30 +103,29 @@
     }
 
     .rack-area {
-        height: 100px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        height: 150px; /* Increased for 3D view */
+        position: relative;
     }
     
-    .rack-slots {
-        display: flex;
-        gap: 4px; /* Reduced gap */
+    .rack-3d-container {
         width: 100%;
-        justify-content: center;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        background: pink; /* DEBUG: Check container size */
     }
     
-    .rack-slot {
-        flex: 1;
-        max-width: 45px; /* Prevent too big on desktop, fit on mobile */
-        aspect-ratio: 1; /* Keep square */
-        background: rgba(255,255,255,0.1);
-        border-radius: 6px; /* Slightly smaller radius */
-        border: 1px solid rgba(255,255,255,0.2);
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .accessible-hidden {
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
     }
+
 
     .tile {
         width: 100%;
