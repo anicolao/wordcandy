@@ -1,0 +1,105 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Determine base path
+        id: base_path
+        run: |
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            echo "path=/wordcandy/pr${{ github.event.pull_request.number }}" >> $GITHUB_OUTPUT
+            echo "dir=pr${{ github.event.pull_request.number }}" >> $GITHUB_OUTPUT
+          else
+            echo "path=/wordcandy" >> $GITHUB_OUTPUT
+            echo "dir=." >> $GITHUB_OUTPUT
+          fi
+
+      - name: Build
+        run: npm run build
+        env:
+          NODE_ENV: production
+          PUBLIC_BASE_PATH: ${{ steps.base_path.outputs.path }}
+          # Firebase Config
+          VITE_FIREBASE_API_KEY: ${{ secrets.VITE_FIREBASE_API_KEY }}
+          VITE_FIREBASE_AUTH_DOMAIN: ${{ secrets.VITE_FIREBASE_AUTH_DOMAIN }}
+          VITE_FIREBASE_PROJECT_ID: ${{ secrets.VITE_FIREBASE_PROJECT_ID }}
+          VITE_FIREBASE_STORAGE_BUCKET: ${{ secrets.VITE_FIREBASE_STORAGE_BUCKET }}
+          VITE_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.VITE_FIREBASE_MESSAGING_SENDER_ID }}
+          VITE_FIREBASE_APP_ID: ${{ secrets.VITE_FIREBASE_APP_ID }}
+          VITE_FIREBASE_MEASUREMENT_ID: ${{ secrets.VITE_FIREBASE_MEASUREMENT_ID }}
+      
+      - name: Verify Secrets presence
+        run: |
+          if [ -z "${{ secrets.VITE_FIREBASE_API_KEY }}" ]; then
+            echo "⚠️  Warning: VITE_FIREBASE_API_KEY secret is not set. Authentication will not work."
+            echo "See docs/CONFIGURATION_GUIDE.md for instructions."
+          else
+            echo "✅ Secrets appear to be present"
+          fi
+
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+          destination_dir: ${{ steps.base_path.outputs.dir }}
+          keep_files: true
+
+      - name: Comment PR with preview URL
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const previewUrl = `https://anicolao.github.io/wordcandy/pr${prNumber}/`;
+            const comment = `🚀 Preview deployed to: ${previewUrl}\n\n⚠️ Ensure 'anicolao.github.io' is authorized in Firebase Auth settings.`;
+            
+            const comments = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber
+            });
+            
+            const botComment = comments.data.find(c => 
+              c.user.login === 'github-actions[bot]' && c.body.includes('Preview deployed to:')
+            );
+            
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: comment
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body: comment
+              });
+            }
