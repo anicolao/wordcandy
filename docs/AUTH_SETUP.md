@@ -10,9 +10,9 @@ By default, Firebase Auth only allows requests from `localhost` and your Firebas
 2.  Navigate to **Authentication** > **Settings** > **Authorized Domains**.
 3.  Click **Add Domain**.
 4.  Add the domain for your hosting provider:
-    *   **GitHub Pages**: `anicolao.github.io` (or your specific pages domain).
-    *   **Vercel**: `your-project.vercel.app`.
-    *   **Netlify**: `your-project.netlify.app`.
+    - **GitHub Pages**: `anicolao.github.io` (or your specific pages domain).
+    - **Vercel**: `your-project.vercel.app`.
+    - **Netlify**: `your-project.netlify.app`.
 
 ## 2. Sign-In Method
 
@@ -24,16 +24,17 @@ Ensure **Google** is enabled as a Sign-In method:
 
 ## 3. Environment Variables (If Applicable)
 
-Your local development uses the checked-in standard config in `src/lib/firebase.ts`. 
+Your local development uses the checked-in standard config in `src/lib/firebase.ts`.
 
 If you use a different Firebase project for Production vs Staging, you should use Environment Variables (`.env`) to populate the config object in `src/lib/firebase.ts`.
 
 Currently, the code uses a hardcoded configuration:
+
 ```typescript
 const firebaseConfig = {
   apiKey: "AIzaSyDWrBRQmuUsXbBafUL5nrZ34YbqQnXQZJk",
   authDomain: "wordcandy-762b1.firebaseapp.com",
-    // ...
+  // ...
 };
 ```
 
@@ -51,7 +52,7 @@ const firebaseConfig = {
 
 Our CI workflow (`.github/workflows/playwright.yml`) uses the **Firebase Auth Emulator** to test authentication logic without hitting the live backend.
 
-*   **Emulator Host**: `localhost:9099`
-*   **Command**: `npx firebase emulators:exec --only auth "npm run test:e2e"`
+- **Emulator Host**: `localhost:9099`
+- **Command**: `npx firebase emulators:exec --only auth "npm run test:e2e"`
 
 This ensures that Pull Request validation is self-contained and does not require credentials for the live production project.
