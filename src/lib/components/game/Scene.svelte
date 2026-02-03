@@ -1,29 +1,45 @@
 <script>
   import { T } from '@threlte/core';
-  import { OrbitControls, Grid } from '@threlte/extras';
+  import { onMount } from 'svelte';
+  import { OrbitControls } from '@threlte/extras';
 
   export let gridSize = 15;
+  export let rackMode = false;
+
+  onMount(() => {
+    console.log('SCENE MOUNTED', { rackMode });
+  });
 </script>
 
-<T.PerspectiveCamera makeDefault position={[0, 15, 10]} fov={50}>
-  <OrbitControls enableZoom={true} enablePan={true} maxPolarAngle={Math.PI / 2} />
-</T.PerspectiveCamera>
+{#if !rackMode}
+    <T.PerspectiveCamera makeDefault position={[0, 15, 10]} fov={50} />
+{:else}
+    <T.PerspectiveCamera 
+        makeDefault 
+        position={[0, 5, 8]} 
+        fov={40} 
+        on:create={({ ref }) => ref.lookAt(0, 0, 0)}
+    />
+{/if}
 
-<T.DirectionalLight position={[10, 10, 5]} intensity={1.5} castShadow />
-<T.AmbientLight intensity={0.5} />
+<!-- Key Light (Warm) -->
+<T.DirectionalLight position={[5, 10, 5]} intensity={4.0} castShadow color="#fff0dd"/>
+<!-- Fill Light (Cool) -->
+<T.DirectionalLight position={[-8, 5, -5]} intensity={3.0} color="#cceeff" />
+<!-- Rim Light (Sharp Cyan) -->
+<T.SpotLight position={[0, 8, -5]} intensity={10.0} color="#00ffcc" angle={0.5} penumbra={0.5} decay={0} distance={20} />
+<T.AmbientLight intensity={1.0} />
 
-<!-- Neon Grid -->
-<Grid 
-    position={[0, -0.01, 0]}
-    args={[20, 20]} 
-    cellColor="#00f0ff" 
-    sectionColor="#00f0ff" 
-    sectionThickness={1.5}
-    fadeDistance={25}
-/>
+<!-- Refraction Background: GridHelper for visual distortion -->
+<T.Group position={[0, -1, -2]} rotation={[0, 0, 0]}>
+    <T.GridHelper args={[30, 30, 0x444444, 0x222222]} rotation={[Math.PI/4, 0, 0]} />
+</T.Group>
 
-<!-- Example Center Star -->
-<T.Mesh position={[0, 0.1, 0]} rotation.x={-Math.PI / 2}>
-    <T.PlaneGeometry args={[1, 1]} />
-    <T.MeshBasicMaterial color="yellow" transparent opacity={0.5} />
+<!-- Environment for gloss reflections -->
+<T.Mesh position={[0, 10, -10]}>
+    <T.SphereGeometry args={[5, 32, 32]} />
+    <T.MeshBasicMaterial color="#ffffff" />
 </T.Mesh>
+
+<slot />
+
