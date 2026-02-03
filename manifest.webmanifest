@@ -1,7 +1,7 @@
 {
-  "name": "WordCandy",
-  "short_name": "WordCandy",
-  "start_url": "/",
+  "name": "Word Candy",
+  "short_name": "Word Candy",
+  "start_url": ".",
   "display": "standalone",
   "background_color": "#050505",
   "theme_color": "#050505",
