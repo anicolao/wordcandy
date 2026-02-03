@@ -58,7 +58,7 @@
 
 <!-- Cyber Background & Grid (Slightly below tiles at Y=0) -->
 <T.Group position={[0, -2, 0]}>
-    <CyberGrid color="#00ffff" backgroundColor="#1a1a1a" {frozen} />
+    <CyberGrid color="#00ffff" backgroundColor="#2a2a2a" {frozen} />
 </T.Group>
 
 <!-- Environment for gloss reflections -->

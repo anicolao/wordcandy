@@ -9,7 +9,7 @@
   export let rotation: [number, number, number] = [0, 0, 0];
   export let scale: number | [number, number, number] = 1;
   export let color = "#FFE135"; // Default Banana Yellow
-  export let opacity = 0.4; // Default Inner Glow Opacity
+  export let opacity = 0.2; // Default Inner Glow Opacity
   export let intensity = 0.5; // Default Internal Light Intensity
 
   // Reactive material props to ensure updates work
