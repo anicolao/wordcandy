@@ -12,6 +12,7 @@
   export let cameraPosition: [number, number, number] = [0, 15, 0.1];
   export let cameraFov = 20;
   export let cameraLookAt: [number, number, number] = [0, 0, 0];
+  export let enableControls = false;
 
   onMount(() => {
     console.log('SCENE MOUNTED', { rackMode, cameraPosition, cameraFov });
@@ -29,19 +30,21 @@
             ref.lookAt(...cameraLookAt);
         }}
     >
-        <OrbitControls 
-            enableDamping 
-            target={cameraLookAt} 
-            on:change={({ target }) => {
-                // target is OrbitControls instance. target.object is the camera.
-                const cam = target.object;
-                cameraPosition = [cam.position.x, cam.position.y, cam.position.z];
-                // FOV might not change with OrbitControls unless zoomed? 
-                // Actually OrbitControls dolly changes position, not FOV usually.
-                // But let's sync it just in case.
-                if (cam.fov) cameraFov = cam.fov;
-            }}
-        />
+        {#if enableControls}
+            <OrbitControls 
+                enableDamping 
+                target={cameraLookAt} 
+                on:change={({ target }) => {
+                    // target is OrbitControls instance. target.object is the camera.
+                    const cam = target.object;
+                    cameraPosition = [cam.position.x, cam.position.y, cam.position.z];
+                    // FOV might not change with OrbitControls unless zoomed? 
+                    // Actually OrbitControls dolly changes position, not FOV usually.
+                    // But let's sync it just in case.
+                    if (cam.fov) cameraFov = cam.fov;
+                }}
+            />
+        {/if}
     </T.PerspectiveCamera>
 {/if}
 

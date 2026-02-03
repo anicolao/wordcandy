@@ -20,6 +20,12 @@
     $: seed = $page.url.searchParams.get('seed');
 
     onMount(() => {
+        // Expose debug controls
+        (window as any).toggleDebug = () => {
+            showControls = !showControls;
+            console.log(`Debug controls ${showControls ? 'enabled' : 'disabled'}`);
+        };
+
         if (uid && (!game?.players || !game.players[uid])) {
              const initPayload = { 
                  playerIds: [uid],
@@ -107,6 +113,7 @@
                     frozen={frozenTime}
                     bind:cameraPosition={camPos}
                     bind:cameraFov={camFov}
+                    enableControls={showControls}
                 >
                     {#each rack as tile, i}
                         <!-- 4x2 Grid Layout Logic (Tabletop: Flat on XZ plane) -->
