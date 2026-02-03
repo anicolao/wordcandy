@@ -8,6 +8,11 @@
   export let position = [0, 0, 0];
   export let rotation = [0, 0, 0];
   export let scale = 1;
+  export let color = "#FFE135"; // Default Banana Yellow
+  export let opacity = 0.4; // Default Inner Glow Opacity
+
+  // Reactive material props to ensure updates work
+  $: materialOpacity = Number(opacity);
 
   // Thicker "Hard Candy" geometry with rounder corners
   const geometry = new RoundedBoxGeometry(1.1, 1.1, 0.5, 4, 0.25);
@@ -17,7 +22,7 @@
   <!-- INNER GLOW: Simulates the "gummy" center -->
   <T.Mesh>
     <T.BoxGeometry args={[0.8, 0.8, 0.3]} />
-    <T.MeshBasicMaterial color="#FFE135" transparent opacity={0.4} />
+    <T.MeshBasicMaterial {color} transparent opacity={materialOpacity} />
   </T.Mesh>
 
   <!-- Tile Base: High Refraction Acrylic -->
@@ -30,7 +35,7 @@
       roughness={0.0}
       ior={1.5}
       thickness={1.5}
-      attenuationColor="#FFE135"
+      attenuationColor={color}
       attenuationDistance={1.2}
       clearcoat={1.0}
       clearcoatRoughness={0.0}

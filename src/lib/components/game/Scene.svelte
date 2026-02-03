@@ -16,10 +16,12 @@
 {:else}
     <T.PerspectiveCamera 
         makeDefault 
-        position={[0, 5, 8]} 
-        fov={40} 
+        position={[0, 8, 12]} 
+        fov={45} 
         on:create={({ ref }) => ref.lookAt(0, 0, 0)}
-    />
+    >
+        <OrbitControls enableDamping target={[0, 0, 0]} />
+    </T.PerspectiveCamera>
 {/if}
 
 <!-- Key Light (Warm) -->
