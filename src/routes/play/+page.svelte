@@ -1,5 +1,6 @@
 <script lang="ts">
     import { onMount } from 'svelte';
+    import { page } from '$app/stores';
     import { Canvas } from '@threlte/core'; // Import Canvas
     import Board from '$lib/components/game/Board.svelte';
     import Scene from '$lib/components/game/Scene.svelte';
@@ -30,6 +31,7 @@
     // Debug State
     let debugColor = "#FFE135";
     let debugOpacity = 0.4;
+    $: frozenTime = $page.url.searchParams.get('frozen');
     let debugIntensity = 0.5;
     let showControls = true;
 </script>
@@ -66,7 +68,7 @@
     <div class="rack-area glass-panel">
         <div class="rack-3d-container">
             <Canvas>
-                <Scene rackMode={true}>
+                <Scene rackMode={true} frozen={frozenTime}>
                     {#each rack as tile, i}
                         <!-- 4x2 Grid Layout Logic (Tabletop: Flat on XZ plane) -->
                         <Tile3D 
