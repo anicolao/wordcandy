@@ -30,6 +30,7 @@
     // Debug State
     let debugColor = "#FFE135";
     let debugOpacity = 0.4;
+    let debugIntensity = 0.5;
     let showControls = true;
 </script>
 
