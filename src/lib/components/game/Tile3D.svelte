@@ -15,7 +15,9 @@
   $: materialOpacity = Number(opacity);
 
   // Thicker "Hard Candy" geometry with rounder corners
-  const geometry = new RoundedBoxGeometry(1.1, 1.1, 0.5, 4, 0.25);
+  // Radius reduced to 0.12 for "sharper dropoff" as requested
+  // Thickness reduced by 15% (0.5 -> 0.425)
+  const geometry = new RoundedBoxGeometry(1.1, 1.1, 0.425, 8, 0.12);
 </script>
 
 <T.Group {position} {rotation} {scale}>
@@ -44,9 +46,10 @@
   </T.Mesh>
 
   <!-- Letter: On Surface & Bold -->
+  <!-- Surface Z calculation: 0.425 / 2 = 0.2125. Placed at 0.225 for slight relief -->
   <Text
     text={letter}
-    position={[0, 0.05, 0.26]} 
+    position={[0, 0.05, 0.225]} 
     fontSize={0.65}
     fontWeight="bold"
     color="#000000"
@@ -58,7 +61,7 @@
   <!-- Value: Bottom Right (Moved Inward) -->
   <Text
     text={value.toString()}
-    position={[0.3, -0.3, 0.26]}
+    position={[0.3, -0.3, 0.225]}
     fontSize={0.25}
     fontWeight="bold"
     color="#000000"
