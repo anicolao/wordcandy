@@ -48,7 +48,7 @@
     
     // Debug State - Visuals
     let debugColor = "#FFE135";
-    let debugOpacity = 0.4;
+    let debugOpacity = 0.2;
     let showControls = false;
 
     // Inputs are bound directly to camPos indices, and camPos is 2-way bound to Scene.
