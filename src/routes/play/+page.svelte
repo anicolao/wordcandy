@@ -1,32 +1,60 @@
-<script>
+<script lang="ts">
+    import { onMount } from 'svelte';
     import Board from '$lib/components/game/Board.svelte';
     import { store } from '$lib/store';
+    import { initializeGame, drawTiles } from '$lib/reducers/game';
     
-    // Mock initializing game
-    // store.dispatch(initializeGame({...}))
+    // Reactive derived state
+    $: user = $store.auth?.user; // Assuming auth structure
+    $: uid = $store.auth?.uid; 
+    $: game = $store.game;
+    $: player = uid && game?.players ? game.players[uid] : null;
+    $: rack = player ? player.rack : [];
+
+    onMount(() => {
+        if (uid && (!game?.players || !game.players[uid])) {
+             store.dispatch(initializeGame({ playerIds: [uid] }));
+            // Draw initial tiles
+            store.dispatch(drawTiles({ playerId: uid }));
+        }
+    });
+
+    function handleDraw() {
+
+        if (uid) {
+            store.dispatch(drawTiles({ playerId: uid }));
+        }
+    }
 </script>
 
 <div class="game-container">
     <header class="game-header">
         <h2 class="neon-text" style="margin: 0;">Daily Challenge</h2>
-        <div class="score">Score: {$store.game.score}</div>
+        <div class="score">Score: {player?.score || 0}</div>
     </header>
 
     <div class="board-area">
-        <Board />
+        <!-- <Board /> -->
+        <div class="board-wrapper" style="color: white; background: #333; height: 60vh; border-radius: 12px;">Board Placeholder</div>
     </div>
 
     <div class="rack-area glass-panel">
-        <!-- Rack placeholder -->
         <div class="rack-slots">
             {#each Array(8) as _, i}
-                <div class="rack-slot"></div>
+                <div class="rack-slot">
+                    {#if rack[i]}
+                        <div class="tile">
+                            <span class="letter">{rack[i].letter}</span>
+                            <span class="value">{rack[i].value}</span>
+                        </div>
+                    {/if}
+                </div>
             {/each}
         </div>
     </div>
     
     <div class="controls">
-        <button class="action-btn">Shuffle</button>
+        <button class="action-btn" on:click={handleDraw}>Draw/Shuffle</button>
         <button class="action-btn submit-btn">Submit</button>
     </div>
 </div>
@@ -73,6 +101,41 @@
         background: rgba(255,255,255,0.1);
         border-radius: 6px; /* Slightly smaller radius */
         border: 1px solid rgba(255,255,255,0.2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .tile {
+        width: 100%;
+        height: 100%;
+        background: #f0f0f0; /* Default light tile */
+        border-radius: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    /* Nano Banana Aesthetic overrides could go here */
+    :global(.dark) .tile {
+        background: #333;
+        color: #fff;
+    }
+
+    .letter {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .value {
+        position: absolute;
+        bottom: 2px;
+        right: 2px;
+        font-size: 0.5rem;
+        color: #666;
     }
     
     .controls {
