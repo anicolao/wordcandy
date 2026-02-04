@@ -115,6 +115,14 @@
     }
   `;
 
+  // Stable color objects
+  const uColorValue = new Color(color);
+  const uBgColorValue = new Color(backgroundColor);
+  
+  // Reactively update color objects
+  $: uColorValue.set(color);
+  $: uBgColorValue.set(backgroundColor);
+
   useTask((delta) => {
     if (frozen !== null) {
       time = Number(frozen);
@@ -131,8 +139,8 @@
     {fragmentShader}
     uniforms={{
       uTime: { value: 0 },
-      uColor: { value: new Color(color) },
-      uBgColor: { value: new Color(backgroundColor) },
+      uColor: { value: uColorValue },
+      uBgColor: { value: uBgColorValue },
       uGridSize: { value: divisions }
     }}
     uniforms.uTime.value={time}

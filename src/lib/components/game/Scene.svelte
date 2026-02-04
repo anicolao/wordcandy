@@ -14,6 +14,11 @@
   export let cameraLookAt: [number, number, number] = [0, 0, 0];
   export let enableControls = false;
 
+  // Debug Controls
+  export let gridColor = '#00ffff';
+  export let gridBackgroundColor = '#2a2a2a';
+  export let lightIntensity = 4.0;
+
   onMount(() => {
     console.log('SCENE MOUNTED', { rackMode, cameraPosition, cameraFov });
   });
@@ -49,7 +54,7 @@
 {/if}
 
 <!-- Key Light (Warm) -->
-<T.DirectionalLight position={[5, 10, 5]} intensity={4.0} castShadow color="#fff0dd"/>
+<T.DirectionalLight position={[5, 10, 5]} intensity={lightIntensity} castShadow color="#fff0dd"/>
 <!-- Fill Light (Cool) -->
 <T.DirectionalLight position={[-8, 5, -5]} intensity={3.0} color="#cceeff" />
 <!-- Rim Light (Sharp Cyan) -->
@@ -58,7 +63,7 @@
 
 <!-- Cyber Background & Grid (Slightly below tiles at Y=0) -->
 <T.Group position={[0, -2, 0]}>
-    <CyberGrid color="#00ffff" backgroundColor="#2a2a2a" {frozen} />
+    <CyberGrid color={gridColor} backgroundColor={gridBackgroundColor} {frozen} />
 </T.Group>
 
 <!-- Environment for gloss reflections -->

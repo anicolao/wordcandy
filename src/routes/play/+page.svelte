@@ -51,6 +51,11 @@
     let debugOpacity = 0.2;
     let showControls = false;
 
+    // Rack Scene Debug
+    let rackGridColor = '#00ffff';
+    let rackGridBackgroundColor = '#2a2a2a';
+    let rackLightIntensity = 4.0;
+
     // Inputs are bound directly to camPos indices, and camPos is 2-way bound to Scene.
 </script>
 
@@ -62,7 +67,20 @@
 
     <!-- Debug Controls -->
     {#if showControls}
-        <div class="debug-panel" style="position: absolute; top: 60px; right: 10px; z-index: 100; background: rgba(0,0,0,0.8); padding: 10px; border-radius: 8px; color: white; display: flex; flex-direction: column; gap: 5px;">
+        <div class="debug-panel" style="position: absolute; top: 60px; right: 10px; z-index: 100; background: rgba(0,0,0,0.8); padding: 10px; border-radius: 8px; color: white; display: flex; flex-direction: column; gap: 5px; max-height: 80vh; overflow-y: auto;">
+            <strong>Rack Scene</strong>
+            <div>
+                 <label>BG: <input type="color" bind:value={rackGridBackgroundColor}></label>
+            </div>
+            <div>
+                 <label>Glow: <input type="color" bind:value={rackGridColor}></label>
+            </div>
+            <div>
+                 <label>Light: <input type="range" min="0" max="10" step="0.1" bind:value={rackLightIntensity}></label> {rackLightIntensity}
+            </div>
+            
+            <hr style="width: 100%; border-color: #444;">
+
             <strong>Visuals</strong>
             <div>
                 <label>Color: <input type="color" bind:value={debugColor}></label>
@@ -114,6 +132,9 @@
                     bind:cameraPosition={camPos}
                     bind:cameraFov={camFov}
                     enableControls={showControls}
+                    gridColor={rackGridColor}
+                    gridBackgroundColor={rackGridBackgroundColor}
+                    lightIntensity={rackLightIntensity}
                 >
                     {#each rack as tile, i}
                         <!-- 4x2 Grid Layout Logic (Tabletop: Flat on XZ plane) -->
