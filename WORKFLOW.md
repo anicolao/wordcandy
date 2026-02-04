@@ -25,5 +25,6 @@ This document outlines the standard workflow for contributing to the `wordcandy`
     - All planning and documentation artifacts (e.g., `implementation_plan.md`, `walkthrough.md`) must be committed to the repository (e.g., in `docs/`) to be visible to reviewers. Local brainstorming files are not sufficient for review.
 
 ## Documentation
--   **E2E Testing**: See [E2E_GUIDE.md](./E2E_GUIDE.md).
--   **Event Sourcing**: See [EVENT_SOURCING.md](./EVENT_SOURCING.md).
+
+- **E2E Testing**: See [E2E_GUIDE.md](./E2E_GUIDE.md).
+- **Event Sourcing**: See [EVENT_SOURCING.md](./EVENT_SOURCING.md).

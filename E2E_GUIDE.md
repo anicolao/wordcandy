@@ -6,8 +6,8 @@ This project uses [Playwright](https://playwright.dev/) for End-to-End testing. 
 
 We enforce a strict **Zero-Pixel Tolerance** policy for visual regression. Since visual state is the primary feedback mechanism for the user, any deviation is considered a bug.
 
-*   **Software Rendering**: We use software rendering (browsers launched with specific flags) to ensure 100% consistent snapshots across CI and local environments.
-*   **Determinism**: Tests must be perfectly deterministic. Random seeds must be fixed.
+- **Software Rendering**: We use software rendering (browsers launched with specific flags) to ensure 100% consistent snapshots across CI and local environments.
+- **Determinism**: Tests must be perfectly deterministic. Random seeds must be fixed.
 
 ## 2. Test Structure
 
@@ -33,21 +33,27 @@ We use a helper class `TestStepHelper` that combines documentation, verification
 #### Usage
 
 ```typescript
-import { test, expect } from '@playwright/test';
-import { TestStepHelper } from '../helpers/test-step-helper';
+import { test, expect } from "@playwright/test";
+import { TestStepHelper } from "../helpers/test-step-helper";
 
-test('User plays a word', async ({ page }, testInfo) => {
+test("User plays a word", async ({ page }, testInfo) => {
   // 1. Initialize
   const tester = new TestStepHelper(page, testInfo);
-  tester.setMetadata('Word Submission', 'As a user, I want to submit a valid word.');
+  tester.setMetadata(
+    "Word Submission",
+    "As a user, I want to submit a valid word.",
+  );
 
   // 2. Perform Action & Verify
-  await page.goto('/');
-  await tester.step('initial-load', {
-    description: 'Board is visible',
+  await page.goto("/");
+  await tester.step("initial-load", {
+    description: "Board is visible",
     verifications: [
-      { spec: 'Title is correct', check: async () => await expect(page).toHaveTitle('WordCandy') }
-    ]
+      {
+        spec: "Title is correct",
+        check: async () => await expect(page).toHaveTitle("WordCandy"),
+      },
+    ],
   });
 
   // 3. Conclude
@@ -56,13 +62,14 @@ test('User plays a word', async ({ page }, testInfo) => {
 ```
 
 This automatically:
+
 1.  Generates numbered screenshots (e.g., `000-initial-load.png`).
 2.  Runs verifications.
 3.  Generates a documentation markdown file for the test run.
 
 ## 4. Playwright Configuration
 
--   **Browsers**: Tests run in Chromium by default.
--   **Flags**: We use flags like `--disable-gpu`, `--font-render-hinting=none` to ensure consistent rendering.
--   **Timeouts**: The maximum acceptable timeout for any condition is **2000ms**.
--   **Waits**: `waitForTimeout` and other arbitrary waits are not allowed; always wait on real UI conditions like `expect().toBeVisible()` or `waitForSelector`.
+- **Browsers**: Tests run in Chromium by default.
+- **Flags**: We use flags like `--disable-gpu`, `--font-render-hinting=none` to ensure consistent rendering.
+- **Timeouts**: The maximum acceptable timeout for any condition is **2000ms**.
+- **Waits**: `waitForTimeout` and other arbitrary waits are not allowed; always wait on real UI conditions like `expect().toBeVisible()` or `waitForSelector`.
