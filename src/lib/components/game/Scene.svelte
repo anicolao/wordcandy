@@ -18,6 +18,7 @@
   export let gridColor = '#00ffff';
   export let gridBackgroundColor = '#2a2a2a';
   export let lightIntensity = 4.0;
+  export let showGrid = true; // Default to true (Rack)
 
   onMount(() => {
     console.log('SCENE MOUNTED', { rackMode, cameraPosition, cameraFov });
@@ -25,8 +26,19 @@
 </script>
 
 {#if !rackMode}
-    <T.PerspectiveCamera makeDefault position={[0, 15, 10]} fov={50} />
+    <!-- Board Camera: Top Down -->
+    <T.PerspectiveCamera 
+        makeDefault 
+        position={[0, 40, 0]} 
+        fov={50} 
+        on:create={({ ref }) => ref.lookAt(0, 0, 0)}
+    >
+        {#if enableControls}
+            <OrbitControls enableDamping target={[0,0,0]} />
+        {/if}
+    </T.PerspectiveCamera>
 {:else}
+    <!-- Rack Camera: Angled -->
     <T.PerspectiveCamera 
         makeDefault 
         position={cameraPosition} 
@@ -40,12 +52,8 @@
                 enableDamping 
                 target={cameraLookAt} 
                 on:change={({ target }) => {
-                    // target is OrbitControls instance. target.object is the camera.
                     const cam = target.object;
                     cameraPosition = [cam.position.x, cam.position.y, cam.position.z];
-                    // FOV might not change with OrbitControls unless zoomed? 
-                    // Actually OrbitControls dolly changes position, not FOV usually.
-                    // But let's sync it just in case.
                     if (cam.fov) cameraFov = cam.fov;
                 }}
             />
@@ -62,15 +70,19 @@
 <T.AmbientLight intensity={1.0} />
 
 <!-- Cyber Background & Grid (Slightly below tiles at Y=0) -->
-<T.Group position={[0, -2, 0]}>
-    <CyberGrid color={gridColor} backgroundColor={gridBackgroundColor} {frozen} />
-</T.Group>
+{#if showGrid}
+    <T.Group position={[0, -2, 0]}>
+        <CyberGrid color={gridColor} backgroundColor={gridBackgroundColor} {frozen} />
+    </T.Group>
+{/if}
 
-<!-- Environment for gloss reflections -->
-<T.Mesh position={[0, 10, -10]}>
-    <T.SphereGeometry args={[5, 32, 32]} />
-    <T.MeshBasicMaterial color="#ffffff" />
-</T.Mesh>
+<!-- Environment for gloss reflections (Rack only) -->
+{#if rackMode}
+    <T.Mesh position={[0, 10, -10]}>
+        <T.SphereGeometry args={[5, 32, 32]} />
+        <T.MeshBasicMaterial color="#ffffff" />
+    </T.Mesh>
+{/if}
 
 <slot />
 

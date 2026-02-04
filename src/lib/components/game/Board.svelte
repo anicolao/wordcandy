@@ -1,11 +1,14 @@
 <script>
   import { Canvas } from '@threlte/core';
   import Scene from './Scene.svelte';
+  import InfiniteBoard from './InfiniteBoard.svelte';
 </script>
 
 <div class="board-wrapper glass-panel">
-  <Canvas>
-    <Scene />
+  <Canvas frameloop="always">
+    <Scene rackMode={false} showGrid={false} enableControls={false}>
+      <InfiniteBoard />
+    </Scene>
   </Canvas>
 </div>
 

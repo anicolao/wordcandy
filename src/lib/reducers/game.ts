@@ -80,8 +80,8 @@ const gameSlice = createSlice({
       // Setup RNG
       const rng = action.payload.seed
         ? new Seeder(action.payload.seed).random.bind(
-            new Seeder(action.payload.seed),
-          )
+          new Seeder(action.payload.seed),
+        )
         : Math.random;
 
       // 1. Create Bag
@@ -143,7 +143,51 @@ const gameSlice = createSlice({
       state,
       action: PayloadAction<{ tileId: string; x: number; y: number }>,
     ) => {
-      // Logic to move tile from rack/board to board
+      const { tileId, x, y } = action.payload;
+      const key = `${x},${y}`;
+      console.log(`REDUCER: placing tile ${tileId} at ${key}`);
+
+      // 1. Check if spot is occupied
+      if (state.board[key]) {
+        console.warn(`REDUCER: Space ${key} already occupied`);
+        return;
+      }
+
+      // 2. Debug/Test Mode: Create tile on the fly
+      if (tileId.startsWith("debug-")) {
+        const letter = tileId.split("-")[1] || "?";
+        state.board[key] = {
+          id: tileId,
+          letter,
+          value: TILE_VALUES[letter] || 0,
+        };
+        return;
+      }
+
+      // 3. Real Mode: Find tile in current player's rack
+      // (Simplified: check all players for now, or just currentPlayer)
+      let foundPlayerId: string | undefined;
+      let tileIndex = -1;
+
+      for (const pid of Object.keys(state.players)) {
+        const idx = state.players[pid].rack.findIndex((t) => t.id === tileId);
+        if (idx !== -1) {
+          foundPlayerId = pid;
+          tileIndex = idx;
+          break;
+        }
+      }
+
+      if (foundPlayerId && tileIndex !== -1) {
+        const tile = state.players[foundPlayerId].rack[tileIndex];
+        // Remove from rack
+        state.players[foundPlayerId].rack.splice(tileIndex, 1);
+        // Add to board
+        state.board[key] = tile;
+        console.log(`REDUCER: Moved tile ${tile.letter} from ${foundPlayerId} to board ${key}`);
+      } else {
+        console.error("REDUCER: Tile not found in any rack", tileId);
+      }
     },
     returnTileToRack: (state, action: PayloadAction<{ tileId: string }>) => {
       // Logic to return tile

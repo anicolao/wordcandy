@@ -117,9 +117,7 @@
     {/if}
 
     <div class="board-area">
-        <!-- <Board /> -->
-        <!-- Placeholder retained for stability while focused on Rack -->
-        <div class="board-wrapper" style="color: white; background: #333; height: 60vh; border-radius: 12px;">Board Placeholder</div>
+        <Board />
     </div>
 
     <!-- 3D Rack Area -->

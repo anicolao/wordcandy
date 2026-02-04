@@ -22,7 +22,7 @@
   const geometry = new RoundedBoxGeometry(1.1, 1.1, 0.425, 8, 0.12);
 </script>
 
-<T.Group {position} {rotation} {scale}>
+<T.Group {position} {rotation} {scale} {...$$restProps}>
   <!-- INNER GLOW: Simulates the "gummy" center -->
   <T.Mesh>
     <T.BoxGeometry args={[0.8, 0.8, 0.3]} />
