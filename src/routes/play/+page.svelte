@@ -10,6 +10,7 @@
     // Get player state from store (reactive)
     $: player = ($store.auth.uid ? $store.game.players[$store.auth.uid] : null) as PlayerState | undefined;
     $: rack = player?.rack || [];
+    $: frozen = $page.url.searchParams.get('frozen');
 
     function handleKeydown(e: KeyboardEvent) {
         if (e.key === '`') {
@@ -140,6 +141,7 @@
             lightIntensity={rackLightIntensity}
             {rackGridOffsetZ}
             {rackTileOffsetZ}
+            {frozen}
         />
     </div>
 

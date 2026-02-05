@@ -25,6 +25,7 @@
   export let lightIntensity = 4.0;
   export let rackGridOffsetZ = 1.25;
   export let rackTileOffsetZ = 0.0; // New Prop
+  export let frozen: string | null = null;
 
   // Rack Layout Constants
   const RACK_Z_OFFSET = 12; // In front of the board
@@ -150,7 +151,7 @@
 </script>
 
 <div class="game-wrapper glass-panel">
-  <Canvas renderMode="always">
+  <Canvas renderMode="always" shadows={!frozen} antialias={!frozen}>
     <Scene 
         bind:cameraPosition={camPos}
         bind:cameraFov={camFov}
@@ -196,6 +197,7 @@
                 divisions={20} 
                 color={rackGridColor}
                 backgroundColor={rackGridBackgroundColor}
+                {frozen}
              />
         </T.Group>
 
@@ -237,6 +239,7 @@
                     scale={$dragScale}
                     color={debugColor}
                     opacity={debugOpacity}
+                    {frozen}
                  />
              {/if}
         {/if}

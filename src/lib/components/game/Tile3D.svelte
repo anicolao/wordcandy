@@ -26,37 +26,24 @@
 </script>
 
 <T.Group {position} {rotation} {scale} {...$$restProps}>
-  <!-- INNER GLOW: Simulates the "gummy" center -->
-  <T.Mesh>
-    <T.BoxGeometry args={[0.8, 0.8, 0.3]} />
-    <T.MeshBasicMaterial {color} transparent opacity={materialOpacity} />
-  </T.Mesh>
-
-  <!-- Tile Base: High Refraction Acrylic -->
-  <!-- Transmission controls "glassiness". High Opacity = Low Transmission -->
-  <T.Mesh 
+  <!-- Glassy Base -->
+  <T.Mesh
     {geometry}
     interactive
     on:pointerdown={(e) => dispatch('pointerdown', e)}
   >
-    <T.MeshPhysicalMaterial
-      color={color}
-      transmission={transmission}
-      opacity={1}
-      metalness={0.0}
-      roughness={0.1}
+    <T.MeshPhysicalMaterial 
+      color={frozen ? '#cccccc' : color} 
+      transmission={frozen ? 0 : transmission} 
+      thickness={thickness} 
+      roughness={frozen ? 1.0 : roughness}
       ior={1.5}
-      thickness={1.5}
-      attenuationColor={color}
-      attenuationDistance={1.2}
-      clearcoat={1.0}
-      clearcoatRoughness={0.1}
-      envMapIntensity={2.0}
+      envMapIntensity={frozen ? 0 : 2.0}
+      transparent
+      opacity={opacity}
     />
   </T.Mesh>
 
-  <!-- Letter: On Surface & Bold -->
-  <!-- Surface Z calculation: 0.425 / 2 = 0.2125. Placed at 0.225 for slight relief -->
   <!-- Letter: On Surface & Bold -->
   <!-- Surface Z calculation: 0.425 / 2 = 0.2125. Placed at 0.225 for slight relief -->
   <Text
