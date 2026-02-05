@@ -45,10 +45,8 @@
   let dragStartPos: { x: number, z: number } | null = null;
   
   // Drag Animation
-  const dragScale = spring(1.8, {
-      stiffness: 0.1,
-      damping: 0.4
-  });
+  const dragScale = spring(1.8, { stiffness: 0.1, damping: 0.4 });
+  const dragZOffset = spring(0, { stiffness: 0.1, damping: 0.4 });
 
   // Drag State
   function handlePointerMove(e: any) {
@@ -62,17 +60,21 @@
     if (potentialDragId && dragStartPos) {
         const dist = Math.sqrt(Math.pow(x - dragStartPos.x, 2) + Math.pow(z - dragStartPos.z, 2));
         if (dist > 0.5) {
-             // Threshold exceeded -> Start Drag
              console.log('Drag Threshold Exceeded:', potentialDragId);
              
-             // Initialize ghostPos immediately
+             // Initial Zone Check using raw Z
              if (z < 9) {
-                 ghostPos = [x, 0.17, z];
                  dragScale.set(1.0);
+                 dragZOffset.set(-1.5 * CELL_SPACING); // Target Offset
              } else {
-                 ghostPos = [x, 1.0, z];
                  dragScale.set(1.8);
+                 dragZOffset.set(0);
              }
+
+             // Initialize Ghost with CURRENT spring values (approximate start)
+             // We can't wait for spring, so we start at current pos + instant offset if needed?
+             // Actually, letting it spring from 0 is better visual.
+             ghostPos = [x, 1.0, z]; // Start "at finger", then tween away.
              
              store.dispatch(startDrag(potentialDragId));
              potentialDragId = null;
@@ -83,12 +85,14 @@
     if (draggingId) {
         if (z < 9) {
              // Board Zone
-             ghostPos = [x, 0.17, z];
              dragScale.set(1.0);
+             dragZOffset.set(-1.5 * CELL_SPACING);
+             ghostPos = [x, 0.17, z + $dragZOffset]; // Apply Offset
         } else {
              // Rack Zone
-             ghostPos = [x, 1.0, z];
              dragScale.set(1.8);
+             dragZOffset.set(0);
+             ghostPos = [x, 1.0, z + $dragZOffset];
         }
     }
   }
@@ -116,6 +120,7 @@
     }
     ghostPos = null;
     dragScale.set(1.8); 
+    dragZOffset.set(0); 
   }
   
   async function handlePointerDown(tileId: string, e: any) {
@@ -148,6 +153,7 @@
           draggingId 
       });
   }
+  $: spotlightPos = draggingId && ghostPos ? { x: ghostPos[0], z: ghostPos[2] } : pointerPos;
 </script>
 
 <div class="game-wrapper glass-panel">
@@ -160,7 +166,7 @@
         {lightIntensity}
     >
         <!-- The Board (Visual Grid) -->
-        <InfiniteBoard {pointerPos} />
+        <InfiniteBoard pointerPos={spotlightPos} />
 
         <!-- Board Tiles (Interactive) -->
         {#each Object.entries(board) as [key, tile] (tile.id)}
