@@ -40,8 +40,6 @@ export const user = writable<User | null>(null);
 export const initFirebase = () => {
   console.log('[FIREBASE] initFirebase called');
   if (typeof window !== "undefined") {
-    console.log(`[FIREBASE] Window exists. Hostname: ${location.hostname}`);
-    analytics = getAnalytics(app);
     auth = getAuth(app);
 
     // Connect to Auth Emulator in Dev
@@ -51,6 +49,13 @@ export const initFirebase = () => {
       connectAuthEmulator(auth, "http://localhost:9099");
     } else {
       console.log(`[FIREBASE] Skipping Emulator. Hostname '${location.hostname}' does not match debug whitelist.`);
+    }
+
+    // Initialize Analytics (Safe Wrap)
+    try {
+      analytics = getAnalytics(app);
+    } catch (e) {
+      console.warn("[FIREBASE] Analytics failed to initialize", e);
     }
 
     onAuthStateChanged(auth, (u) => {
