@@ -48,13 +48,9 @@ export const initFirebase = () => {
       connectAuthEmulator(auth, "http://localhost:9099");
     }
 
-    if (location.search.includes('mockAuth=1')) {
-      // Skip listener in mock mode
-    } else {
-      onAuthStateChanged(auth, (u) => {
-        user.set(u);
-      });
-    }
+    onAuthStateChanged(auth, (u) => {
+      user.set(u);
+    });
   }
 };
 
@@ -62,16 +58,7 @@ export const initFirebase = () => {
 export const signInWithGoogle = async () => {
   if (!auth) return;
 
-  // E2E Test Bypass
-  if (location.search.includes('mockAuth=1')) {
-    console.log('Mocking Auth for E2E');
-    user.set({
-      uid: "local-user-123",
-      displayName: "E2E User",
-      email: "e2e@example.com",
-    } as any);
-    return;
-  }
+
 
   const provider = new GoogleAuthProvider();
   try {

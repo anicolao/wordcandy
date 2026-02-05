@@ -12,7 +12,7 @@ test("MVP Walkthrough", async ({ page }, testInfo) => {
   // Capture console logs for debugging
   page.on('console', msg => console.log(`[BROWSER] ${msg.text()}`));
 
-  await page.goto("/?mockAuth=1");
+  await page.goto("/");
   await tester.step("00-landing", {
     description: "Landing Page",
     verifications: [
@@ -27,32 +27,45 @@ test("MVP Walkthrough", async ({ page }, testInfo) => {
             page.getByRole("button", { name: "Sign in with Google" }),
           ).toBeVisible(),
       },
-      // Remove Firebase Emulator Warning banner if present to ensure consistent snapshots
-      {
-        spec: "Emulator Warning is hidden",
-        check: async () =>
-          await page.evaluate(() => {
-            const warningCallback = (node: Element) => {
-              if (node.shadowRoot) {
-                node.shadowRoot.querySelectorAll('*').forEach(warningCallback);
-              }
-              if ((node.textContent || '').includes('Running in emulator mode') &&
-                (node.textContent || '').length < 300) { // Limit to avoid hitting body/html
-                console.log('[BROWSER] Found Banner:', node.tagName, node.className);
-                node.remove();
-                // Also hard-hide potential Firebase wrappers
-                const firebaseEl = document.querySelector('.firebase-emulator-warning');
-                if (firebaseEl) firebaseEl.remove();
-              }
-            };
-            document.querySelectorAll('body *').forEach(warningCallback);
-          }),
-      },
     ],
   });
 
-  // 2. Sign In Flow (Mocked)
+  // 2. Sign In Flow (Emulator Popup)
+  // Trigger popup and wait for it
+  const popupPromise = page.waitForEvent('popup');
   await page.getByRole("button", { name: "Sign in with Google" }).click();
+  const popup = await popupPromise;
+  await popup.waitForLoadState();
+
+  // Interact with Firebase Auth Emulator UI
+  console.log('Interacting with Popup...');
+
+  // Wait for either list or add button
+  const emulatorUI = popup.locator('.js-new-account, .js-reuse-account').first();
+  await emulatorUI.waitFor({ state: 'visible', timeout: 10000 });
+
+  if (await popup.locator('.js-reuse-account').count() > 0) {
+    console.log('Clicking Existing Account');
+    // Click the first account's button (usually the list item itself or a button inside)
+    // Based on HTML dump: .js-reuse-account allows click
+    await popup.locator('.js-reuse-account').first().click();
+  } else {
+    console.log('Creating New Account');
+    await popup.locator('.js-new-account').click();
+
+    const autogen = popup.locator('#autogen-button');
+    await autogen.waitFor({ state: 'visible' });
+    await autogen.click();
+
+    await popup.locator('#sign-in').click();
+  }
+
+  // Wait for popup to close
+  await popup.waitForEvent('close');
+  console.log('Popup Closed');
+
+  // Wait for main page to reflect login
+  await expect(page.getByRole("link", { name: "PLAY" })).toBeVisible({ timeout: 10000 });
 
   await tester.step("01-lobby", {
     description: "Lobby (Signed In)",
