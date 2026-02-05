@@ -41,6 +41,7 @@ export const initFirebase = () => {
   console.log('[FIREBASE] initFirebase called');
   if (typeof window !== "undefined") {
     auth = getAuth(app);
+    console.log(`[FIREBASE] Config - AuthDomain: ${firebaseConfig.authDomain ? 'SET' : 'MISSING'} (${firebaseConfig.authDomain})`);
 
     // Connect to Auth Emulator in Dev
     if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
