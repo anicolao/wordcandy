@@ -80,14 +80,6 @@ test("MVP Walkthrough", async ({ page }, testInfo) => {
           await expect(page.locator('[data-testid="rack-tile"]')).toHaveCount(8),
       },
       // Note: We snapshot here with frozen params to ensure pixel-perfect determinism
-      // Also strictly remove debug container to prevent flakes
-      {
-        spec: "Debug UI is hidden",
-        check: async () =>
-          await page.evaluate(() =>
-            document.getElementById("debug-container")?.remove(),
-          ),
-      },
     ],
   });
 

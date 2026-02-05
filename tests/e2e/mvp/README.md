@@ -28,7 +28,6 @@
 - [x] Header says Daily Challenge
 - [x] Game container is visible
 - [x] Rack tiles are present (Logic Check)
-- [x] Debug UI is hidden
 
 ---
 

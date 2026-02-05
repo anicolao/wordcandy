@@ -59,11 +59,13 @@
 
         try {
             const container = document.getElementById('debug-container');
+            if (!container) return; // Strictly require container (hidden in frozen mode)
+
             // Cast to any to bypass strict TS checks for Tweakpane structure
             const pane = new Pane({ 
                 title: 'Debug Controls', 
                 expanded: true,
-                container: container || undefined 
+                container: container 
             }) as any;
             
             // Rack Visuals
