@@ -1,0 +1,429 @@
+Playwright E2E Tests	Set up job	﻿2026-02-05T15:40:40.3117410Z Current runner version: '2.331.0'
+Playwright E2E Tests	Set up job	2026-02-05T15:40:40.3137190Z ##[group]Runner Image Provisioner
+Playwright E2E Tests	Set up job	2026-02-05T15:40:40.3137890Z Hosted Compute Agent
+Playwright E2E Tests	Set up job	2026-02-05T15:40:40.3138300Z Version: 20260123.484
+Playwright E2E Tests	Set up job	2026-02-05T15:40:40.3138710Z Commit: 6bd6555ca37d84114959e1c76d2c01448ff61c5d
+Playwright E2E Tests	Set up job	2026-02-05T15:40:40.3139170Z Build Date: 2026-01-23T19:41:17Z
+Playwright E2E Tests	Set up job	2026-02-05T15:40:40.3139600Z Worker ID: {63d7c0bf-bcc0-4cf1-9bec-1775e1e8b98c}
+Playwright E2E Tests	Set up job	2026-02-05T15:40:40.3140060Z Azure Region: westus
+Playwright E2E Tests	Set up job	2026-02-05T15:40:40.3140440Z ##[endgroup]
+Playwright E2E Tests	Set up job	2026-02-05T15:40:40.3141640Z ##[group]Operating System
+Playwright E2E Tests	Set up job	2026-02-05T15:40:40.3142140Z macOS
+Playwright E2E Tests	Set up job	2026-02-05T15:40:40.3142500Z 14.8.3
+Playwright E2E Tests	Set up job	2026-02-05T15:40:40.3142960Z 23J220
+Playwright E2E Tests	Set up job	2026-02-05T15:40:40.3143310Z ##[endgroup]
+Playwright E2E Tests	Set up job	2026-02-05T15:40:40.3143680Z ##[group]Runner Image
+Playwright E2E Tests	Set up job	2026-02-05T15:40:40.3144150Z Image: macos-14-arm64
+Playwright E2E Tests	Set up job	2026-02-05T15:40:40.3144620Z Version: 20260202.0106.1
+Playwright E2E Tests	Set up job	2026-02-05T15:40:40.3149800Z Included Software: https://github.com/actions/runner-images/blob/macos-14-arm64/20260202.0106/images/macos/macos-14-arm64-Readme.md
+Playwright E2E Tests	Set up job	2026-02-05T15:40:40.3153500Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-14-arm64%2F20260202.0106
+Playwright E2E Tests	Set up job	2026-02-05T15:40:40.3155270Z ##[endgroup]
+Playwright E2E Tests	Set up job	2026-02-05T15:40:40.3188380Z ##[group]GITHUB_TOKEN Permissions
+Playwright E2E Tests	Set up job	2026-02-05T15:40:40.3192600Z Contents: read
+Playwright E2E Tests	Set up job	2026-02-05T15:40:40.3193540Z Metadata: read
+Playwright E2E Tests	Set up job	2026-02-05T15:40:40.3194480Z Packages: read
+Playwright E2E Tests	Set up job	2026-02-05T15:40:40.3195370Z ##[endgroup]
+Playwright E2E Tests	Set up job	2026-02-05T15:40:40.3199410Z Secret source: Actions
+Playwright E2E Tests	Set up job	2026-02-05T15:40:40.3200790Z Prepare workflow directory
+Playwright E2E Tests	Set up job	2026-02-05T15:40:40.3489490Z Prepare all required actions
+Playwright E2E Tests	Set up job	2026-02-05T15:40:40.3538720Z Getting action download info
+Playwright E2E Tests	Set up job	2026-02-05T15:40:40.7601350Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+Playwright E2E Tests	Set up job	2026-02-05T15:40:41.2719060Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+Playwright E2E Tests	Set up job	2026-02-05T15:40:41.4089600Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+Playwright E2E Tests	Set up job	2026-02-05T15:40:41.6725950Z Complete job name: Playwright E2E Tests
+Playwright E2E Tests	Checkout repository	﻿2026-02-05T15:40:41.7258280Z ##[group]Run actions/checkout@v4
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:41.7259060Z with:
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:41.7259430Z   repository: anicolao/wordcandy
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:41.7260080Z   token: ***
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:41.7260420Z   ssh-strict: true
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:41.7260760Z   ssh-user: git
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:41.7261110Z   persist-credentials: true
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:41.7261500Z   clean: true
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:41.7261840Z   sparse-checkout-cone-mode: true
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:41.7262220Z   fetch-depth: 1
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:41.7262530Z   fetch-tags: false
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:41.7262860Z   show-progress: true
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:41.7263220Z   lfs: false
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:41.7263540Z   submodules: false
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:41.7263890Z   set-safe-directory: true
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:41.7264390Z ##[endgroup]
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.1701680Z Syncing repository: anicolao/wordcandy
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.1703560Z ##[group]Getting Git version info
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.1704080Z Working directory is '/Users/runner/work/wordcandy/wordcandy'
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.1705210Z [command]/opt/homebrew/bin/git version
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.2447160Z git version 2.52.0
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.2475040Z ##[endgroup]
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.2488440Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/f0128598-25e8-451c-b6fd-a4f0af7afa34/.gitconfig'
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.2499450Z Temporarily overriding HOME='/Users/runner/work/_temp/f0128598-25e8-451c-b6fd-a4f0af7afa34' before making global git config changes
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.2502100Z Adding repository directory to the temporary git global config as a safe directory
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.2504460Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/wordcandy/wordcandy
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.2600080Z Deleting the contents of '/Users/runner/work/wordcandy/wordcandy'
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.2604280Z ##[group]Initializing the repository
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.2610540Z [command]/opt/homebrew/bin/git init /Users/runner/work/wordcandy/wordcandy
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.2851010Z hint: Using 'master' as the name for the initial branch. This default branch name
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.2853060Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.2853870Z hint: to use in all of your new repositories, which will suppress this warning,
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.2854390Z hint: call:
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.2854670Z hint:
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.2855020Z hint: 	git config --global init.defaultBranch <name>
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.2855420Z hint:
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.2855800Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.2856400Z hint: 'development'. The just-created branch can be renamed via this command:
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.2856880Z hint:
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.2857170Z hint: 	git branch -m <name>
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.2857490Z hint:
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.2857930Z hint: Disable this message with "git config set advice.defaultBranchName false"
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.2865490Z Initialized empty Git repository in /Users/runner/work/wordcandy/wordcandy/.git/
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.2882760Z [command]/opt/homebrew/bin/git remote add origin https://github.com/anicolao/wordcandy
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.2960750Z ##[endgroup]
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.2962260Z ##[group]Disabling automatic garbage collection
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.2963730Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.3012900Z ##[endgroup]
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.3014220Z ##[group]Setting up auth
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.3018640Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.3083840Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.4099450Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.4160450Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.5029110Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.5115690Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.6097140Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.6179660Z ##[endgroup]
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.6181120Z ##[group]Fetching the repository
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:42.6184830Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +547d1f8b5224ffa51a6eb7d77c0663321b9e4ed5:refs/remotes/pull/9/merge
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:43.2729440Z From https://github.com/anicolao/wordcandy
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:43.2735070Z  * [new ref]         547d1f8b5224ffa51a6eb7d77c0663321b9e4ed5 -> pull/9/merge
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:43.2871040Z ##[endgroup]
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:43.2873900Z ##[group]Determining the checkout info
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:43.2876930Z ##[endgroup]
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:43.2878750Z [command]/opt/homebrew/bin/git sparse-checkout disable
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:43.2953700Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:43.3020550Z ##[group]Checking out the ref
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:43.3023900Z [command]/opt/homebrew/bin/git checkout --progress --force refs/remotes/pull/9/merge
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:43.5054980Z HEAD is now at 547d1f8 Merge 1df306919ba91d53a84e4beb5cea3c5b02c4fedf into 0259ceb9f81a65a1fd1745c850e249c5720e79b8
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:43.5088980Z ##[endgroup]
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:43.5221250Z [command]/opt/homebrew/bin/git log -1 --format=%H
+Playwright E2E Tests	Checkout repository	2026-02-05T15:40:43.5275580Z 547d1f8b5224ffa51a6eb7d77c0663321b9e4ed5
+Playwright E2E Tests	Setup Node.js	﻿2026-02-05T15:40:43.6390590Z ##[group]Run actions/setup-node@v4
+Playwright E2E Tests	Setup Node.js	2026-02-05T15:40:43.6394160Z with:
+Playwright E2E Tests	Setup Node.js	2026-02-05T15:40:43.6395860Z   node-version: 20
+Playwright E2E Tests	Setup Node.js	2026-02-05T15:40:43.6397640Z   cache: npm
+Playwright E2E Tests	Setup Node.js	2026-02-05T15:40:43.6400220Z   always-auth: false
+Playwright E2E Tests	Setup Node.js	2026-02-05T15:40:43.6401020Z   check-latest: false
+Playwright E2E Tests	Setup Node.js	2026-02-05T15:40:43.6402030Z   token: ***
+Playwright E2E Tests	Setup Node.js	2026-02-05T15:40:43.6402600Z ##[endgroup]
+Playwright E2E Tests	Setup Node.js	2026-02-05T15:40:43.9410300Z Found in cache @ /Users/runner/hostedtoolcache/node/20.20.0/arm64
+Playwright E2E Tests	Setup Node.js	2026-02-05T15:40:43.9412460Z ##[group]Environment details
+Playwright E2E Tests	Setup Node.js	2026-02-05T15:40:45.3357480Z node: v20.20.0
+Playwright E2E Tests	Setup Node.js	2026-02-05T15:40:45.3463960Z npm: 10.8.2
+Playwright E2E Tests	Setup Node.js	2026-02-05T15:40:45.3521960Z yarn: 1.22.22
+Playwright E2E Tests	Setup Node.js	2026-02-05T15:40:45.3597800Z ##[endgroup]
+Playwright E2E Tests	Setup Node.js	2026-02-05T15:40:45.3728760Z [command]/Users/runner/hostedtoolcache/node/20.20.0/arm64/bin/npm config get cache
+Playwright E2E Tests	Setup Node.js	2026-02-05T15:40:45.7080390Z /Users/runner/.npm
+Playwright E2E Tests	Setup Node.js	2026-02-05T15:40:46.0298520Z Cache hit for: node-cache-macOS-arm64-npm-bfd9d232b8a14919d814ddefa6439540d9f94b5797436d577dcfdc40bd2349ed
+Playwright E2E Tests	Setup Node.js	2026-02-05T15:40:47.2117580Z Received 16777216 of 118104258 (14.2%), 16.0 MBs/sec
+Playwright E2E Tests	Setup Node.js	2026-02-05T15:40:48.2219260Z Received 75497472 of 118104258 (63.9%), 35.8 MBs/sec
+Playwright E2E Tests	Setup Node.js	2026-02-05T15:40:49.2243530Z Received 113909954 of 118104258 (96.4%), 36.1 MBs/sec
+Playwright E2E Tests	Setup Node.js	2026-02-05T15:40:49.5644250Z Received 118104258 of 118104258 (100.0%), 33.6 MBs/sec
+Playwright E2E Tests	Setup Node.js	2026-02-05T15:40:49.5657430Z Cache Size: ~113 MB (118104258 B)
+Playwright E2E Tests	Setup Node.js	2026-02-05T15:40:49.5831420Z [command]/opt/homebrew/bin/gtar -xf /Users/runner/work/_temp/817c1e1d-6eed-4b79-a156-adab4d59a725/cache.tzst -P -C /Users/runner/work/wordcandy/wordcandy --delay-directory-restore --use-compress-program unzstd
+Playwright E2E Tests	Setup Node.js	2026-02-05T15:40:51.4761350Z Cache restored successfully
+Playwright E2E Tests	Setup Node.js	2026-02-05T15:40:51.4785420Z Cache restored from key: node-cache-macOS-arm64-npm-bfd9d232b8a14919d814ddefa6439540d9f94b5797436d577dcfdc40bd2349ed
+Playwright E2E Tests	Install dependencies	﻿2026-02-05T15:40:51.4986570Z ##[group]Run npm ci
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:51.4986930Z [36;1mnpm ci[0m
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:51.5145010Z shell: /bin/bash -e {0}
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:51.5145330Z ##[endgroup]
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6263350Z npm warn ERESOLVE overriding peer dependency
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6265150Z npm warn While resolving: @threejs-kit/instanced-sprite-mesh@2.5.1
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6266400Z npm warn Found: three@0.160.1
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6267190Z npm warn node_modules/three
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6268090Z npm warn   dev three@"^0.160.0" from the root project
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6269370Z npm warn   10 more (@threlte/core, @threlte/extras, troika-three-text, ...)
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6270350Z npm warn
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6271150Z npm warn Could not resolve dependency:
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6272530Z npm warn peer three@">=0.170.0" from @threejs-kit/instanced-sprite-mesh@2.5.1
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6274070Z npm warn node_modules/@threlte/extras/node_modules/@threejs-kit/instanced-sprite-mesh
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6275840Z npm warn   @threejs-kit/instanced-sprite-mesh@"^2.4.6" from @threlte/extras@8.12.3
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6277390Z npm warn   node_modules/@threlte/extras
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6278080Z npm warn
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6278980Z npm warn Conflicting peer dependency: three@0.182.0
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6279780Z npm warn node_modules/three
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6280900Z npm warn   peer three@">=0.170.0" from @threejs-kit/instanced-sprite-mesh@2.5.1
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6282650Z npm warn   node_modules/@threlte/extras/node_modules/@threejs-kit/instanced-sprite-mesh
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6284300Z npm warn     @threejs-kit/instanced-sprite-mesh@"^2.4.6" from @threlte/extras@8.12.3
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6285590Z npm warn     node_modules/@threlte/extras
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6286550Z npm warn ERESOLVE overriding peer dependency
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6314150Z npm warn While resolving: three-perf@1.0.11
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6316060Z npm warn Found: three@0.160.1
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6321120Z npm warn node_modules/three
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6321870Z npm warn   dev three@"^0.160.0" from the root project
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6322710Z npm warn   10 more (@threlte/core, @threlte/extras, troika-three-text, ...)
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6326910Z npm warn
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6328040Z npm warn Could not resolve dependency:
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6340000Z npm warn peer three@">=0.170" from three-perf@1.0.11
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6340520Z npm warn node_modules/@threlte/extras/node_modules/three-perf
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6341180Z npm warn   three-perf@"^1.0.10" from @threlte/extras@8.12.3
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6341610Z npm warn   node_modules/@threlte/extras
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6341880Z npm warn
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6342300Z npm warn Conflicting peer dependency: three@0.182.0
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6342630Z npm warn node_modules/three
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6343020Z npm warn   peer three@">=0.170" from three-perf@1.0.11
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6343580Z npm warn   node_modules/@threlte/extras/node_modules/three-perf
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6344060Z npm warn     three-perf@"^1.0.10" from @threlte/extras@8.12.3
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:52.6344540Z npm warn     node_modules/@threlte/extras
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:57.7631300Z npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:58.0464190Z npm warn deprecated rimraf@2.7.1: Rimraf versions prior to v4 are no longer supported
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:58.1707950Z npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:58.1781760Z npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:58.5079990Z npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+Playwright E2E Tests	Install dependencies	2026-02-05T15:40:58.5506530Z npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+Playwright E2E Tests	Install dependencies	2026-02-05T15:41:00.2738880Z npm warn deprecated node-domexception@1.0.0: Use your platform's native DOMException instead
+Playwright E2E Tests	Install dependencies	2026-02-05T15:41:02.1733530Z npm warn deprecated json-ptr@3.1.1: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+Playwright E2E Tests	Install dependencies	2026-02-05T15:41:07.8611290Z npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+Playwright E2E Tests	Install dependencies	2026-02-05T15:42:43.1760140Z 
+Playwright E2E Tests	Install dependencies	2026-02-05T15:42:43.1762700Z added 1033 packages, and audited 1034 packages in 2m
+Playwright E2E Tests	Install dependencies	2026-02-05T15:42:43.1763430Z 
+Playwright E2E Tests	Install dependencies	2026-02-05T15:42:43.1763810Z 149 packages are looking for funding
+Playwright E2E Tests	Install dependencies	2026-02-05T15:42:43.1764490Z   run `npm fund` for details
+Playwright E2E Tests	Install dependencies	2026-02-05T15:42:43.9860660Z 
+Playwright E2E Tests	Install dependencies	2026-02-05T15:42:43.9864200Z 22 vulnerabilities (3 low, 17 moderate, 2 high)
+Playwright E2E Tests	Install dependencies	2026-02-05T15:42:43.9864970Z 
+Playwright E2E Tests	Install dependencies	2026-02-05T15:42:43.9865730Z To address issues that do not require attention, run:
+Playwright E2E Tests	Install dependencies	2026-02-05T15:42:43.9866570Z   npm audit fix
+Playwright E2E Tests	Install dependencies	2026-02-05T15:42:43.9867000Z 
+Playwright E2E Tests	Install dependencies	2026-02-05T15:42:43.9867700Z To address all issues (including breaking changes), run:
+Playwright E2E Tests	Install dependencies	2026-02-05T15:42:43.9868630Z   npm audit fix --force
+Playwright E2E Tests	Install dependencies	2026-02-05T15:42:43.9869430Z 
+Playwright E2E Tests	Install dependencies	2026-02-05T15:42:43.9869820Z Run `npm audit` for details.
+Playwright E2E Tests	Install Playwright browsers	﻿2026-02-05T15:42:44.0507050Z ##[group]Run npx playwright install --with-deps chromium
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:44.0508760Z [36;1mnpx playwright install --with-deps chromium[0m
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:44.0915960Z shell: /bin/bash -e {0}
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:44.0918070Z ##[endgroup]
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:46.2004040Z Downloading Chrome for Testing 145.0.7632.6 (playwright chromium v1208) from https://cdn.playwright.dev/builds/cft/145.0.7632.6/mac-arm64/chrome-mac-arm64.zip
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:46.6148190Z |                                                                                |   0% of 162.3 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:47.2000750Z |■■■■■■■■                                                                        |  10% of 162.3 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:47.4678560Z |■■■■■■■■■■■■■■■■                                                                |  20% of 162.3 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:47.7742770Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 162.3 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:48.0465750Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 162.3 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:48.2841520Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 162.3 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:48.4900010Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 162.3 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:48.8027180Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 162.3 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:49.0582650Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 162.3 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:49.3102140Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 162.3 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:49.5498530Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 162.3 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:52.9235450Z Chrome for Testing 145.0.7632.6 (playwright chromium v1208) downloaded to /Users/runner/Library/Caches/ms-playwright/chromium-1208
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:52.9240670Z Downloading FFmpeg (playwright ffmpeg v1011) from https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1011/ffmpeg-mac-arm64.zip
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:53.1361630Z |                                                                                |   0% of 1 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:53.1566990Z |■■■■■■■■                                                                        |  10% of 1 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:53.1668610Z |■■■■■■■■■■■■■■■■                                                                |  20% of 1 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:53.1871600Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  31% of 1 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:53.1972010Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 1 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:53.2076300Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 1 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:53.2180450Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 1 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:53.2280170Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 1 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:53.2381010Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 1 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:53.2482590Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 1 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:53.2583930Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 1 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:53.2685770Z FFmpeg (playwright ffmpeg v1011) downloaded to /Users/runner/Library/Caches/ms-playwright/ffmpeg-1011
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:53.2789890Z Downloading Chrome Headless Shell 145.0.7632.6 (playwright chromium-headless-shell v1208) from https://cdn.playwright.dev/builds/cft/145.0.7632.6/mac-arm64/chrome-headless-shell-mac-arm64.zip
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:53.5297600Z |                                                                                |   0% of 91.1 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:54.0242640Z |■■■■■■■■                                                                        |  10% of 91.1 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:54.1466100Z |■■■■■■■■■■■■■■■■                                                                |  20% of 91.1 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:54.3236130Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 91.1 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:54.4892030Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 91.1 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:54.6032810Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 91.1 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:54.7102510Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 91.1 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:54.8469840Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 91.1 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:55.0740060Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 91.1 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:55.1788450Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 91.1 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:55.2883030Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 91.1 MiB
+Playwright E2E Tests	Install Playwright browsers	2026-02-05T15:42:56.8505470Z Chrome Headless Shell 145.0.7632.6 (playwright chromium-headless-shell v1208) downloaded to /Users/runner/Library/Caches/ms-playwright/chromium_headless_shell-1208
+Playwright E2E Tests	Check Java Version (for Emulator)	﻿2026-02-05T15:42:56.8936350Z ##[group]Run java -version
+Playwright E2E Tests	Check Java Version (for Emulator)	2026-02-05T15:42:56.8936860Z [36;1mjava -version[0m
+Playwright E2E Tests	Check Java Version (for Emulator)	2026-02-05T15:42:56.9046810Z shell: /bin/bash -e {0}
+Playwright E2E Tests	Check Java Version (for Emulator)	2026-02-05T15:42:56.9047230Z ##[endgroup]
+Playwright E2E Tests	Check Java Version (for Emulator)	2026-02-05T15:42:57.4029710Z openjdk version "21.0.9" 2025-10-21 LTS
+Playwright E2E Tests	Check Java Version (for Emulator)	2026-02-05T15:42:57.4034640Z OpenJDK Runtime Environment Temurin-21.0.9+10 (build 21.0.9+10-LTS)
+Playwright E2E Tests	Check Java Version (for Emulator)	2026-02-05T15:42:57.4035700Z OpenJDK 64-Bit Server VM Temurin-21.0.9+10 (build 21.0.9+10-LTS, mixed mode, sharing)
+Playwright E2E Tests	Run E2E Tests with Emulator	﻿2026-02-05T15:42:57.4218810Z ##[group]Run npx firebase emulators:exec --only auth "npm run test:e2e"
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:42:57.4219330Z [36;1mnpx firebase emulators:exec --only auth "npm run test:e2e"[0m
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:42:57.4288870Z shell: /bin/bash -e {0}
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:42:57.4289220Z env:
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:42:57.4289500Z   CI: true
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:42:57.4289720Z   FIREBASE_AUTH_EMULATOR_HOST: localhost:9099
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:42:57.4290040Z   VITE_FIREBASE_API_KEY: dummy
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:42:57.4290440Z ##[endgroup]
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:00.2796370Z [33m[1m⚠  emulators:[22m[39m You are not currently authenticated so some features may not work correctly. Please run [1mfirebase login[22m to authenticate the CLI.
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:00.2893800Z [36m[1mi  emulators:[22m[39m Starting emulators: auth
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:00.2998200Z [36m[1mi  emulators:[22m[39m Detected demo project ID "demo-no-project", emulated services will use a demo configuration and attempts to access non-emulated services for this project will fail.
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:06.4483410Z [36m[1mi [22m[39m Running script: [1mnpm run test:e2e[22m
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:06.6635830Z 
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:06.6737630Z > wordcandy@0.0.1 test:e2e
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:06.6828270Z > playwright test
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:06.6832420Z 
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:09.0751920Z [WebServer] ▲ [WARNING] Cannot find base config file "./.svelte-kit/tsconfig.json" [tsconfig.json]
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:09.0752750Z [WebServer] 
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:09.0753190Z [WebServer]     tsconfig.json:2:13:
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:09.0754530Z [WebServer]       2 │   "extends": "./.svelte-kit/tsconfig.json",
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:09.0755090Z [WebServer]         ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:09.0755420Z [WebServer] 
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:12.1993660Z 
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:12.1995060Z Running 1 test using 1 worker
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:15.1965030Z [BROWSER] [vite] connecting...
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:15.2424950Z [BROWSER] [vite] connected.
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:15.3518400Z [BROWSER] Hostname: localhost
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:15.3719110Z [BROWSER] <Layout> was created with unknown prop 'params'
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:15.3721010Z [BROWSER] <Page> was created with unknown prop 'params'
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:15.3721570Z [BROWSER] [PAGE] User State: null
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:15.3870850Z [BROWSER] [HMR][Svelte] Unrecoverable HMR error in <Root>: next update will trigger a full reload
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:26.9462230Z ×[BROWSER] [vite] connecting...
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:26.9672890Z [BROWSER] [vite] connected.
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:26.9778690Z [BROWSER] <Layout> was created with unknown prop 'params'
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:26.9811780Z [BROWSER] <Page> was created with unknown prop 'params'
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:26.9812760Z [BROWSER] [PAGE] User State: null
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:26.9813520Z [BROWSER] [HMR][Svelte] Unrecoverable HMR error in <Root>: next update will trigger a full reload
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:27.1077550Z [BROWSER] Hostname: localhost
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:39.3213970Z ×[BROWSER] [vite] connecting...
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:39.3216030Z [BROWSER] [vite] connected.
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:39.3580500Z [BROWSER] <Layout> was created with unknown prop 'params'
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:39.3680880Z [BROWSER] <Page> was created with unknown prop 'params'
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:39.3783520Z [BROWSER] [PAGE] User State: null
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:39.3830510Z [BROWSER] [HMR][Svelte] Unrecoverable HMR error in <Root>: next update will trigger a full reload
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:39.4374250Z [BROWSER] Hostname: localhost
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.7687980Z F
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.7754660Z 
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.7888410Z   1) [chromium] › tests/e2e/mvp/mvp.spec.ts:4:1 › MVP Walkthrough ──────────────────────────────────
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.7888910Z 
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.7991000Z     Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8101710Z 
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8150040Z     Locator: getByText('Running in emulator mode')
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8216680Z     Expected: visible
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8253240Z     Timeout: 10000ms
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8262790Z     Error: element(s) not found
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8263950Z 
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8264590Z     Call log:
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8295610Z     [2m  - Expect "toBeVisible" with timeout 10000ms[22m
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8298570Z     [2m  - waiting for getByText('Running in emulator mode')[22m
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8302020Z 
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8302720Z 
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8305860Z       35 |           const hostname = await page.evaluate(() => window.location.hostname);
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8309000Z       36 |           console.log(`[BROWSER] Hostname: ${hostname}`);
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8311440Z     > 37 |           await expect(page.getByText('Running in emulator mode')).toBeVisible({ timeout: 10000 });
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8316000Z          |                                                                    ^
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8317280Z       38 |         },
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8318150Z       39 |       },
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8318740Z       40 |     ],
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8320490Z         at Object.check (/Users/runner/work/wordcandy/wordcandy/tests/e2e/mvp/mvp.spec.ts:37:68)
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8322160Z         at TestStepHelper.step (/Users/runner/work/wordcandy/wordcandy/tests/e2e/helpers/test-step-helper.ts:39:7)
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8323230Z         at /Users/runner/work/wordcandy/wordcandy/tests/e2e/mvp/mvp.spec.ts:16:3
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8348320Z 
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8349210Z     Error Context: test-results/mvp-mvp-MVP-Walkthrough-chromium/error-context.md
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8350040Z 
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8354070Z     Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8355240Z 
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8356450Z     Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8357210Z 
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8358450Z     Locator: getByText('Running in emulator mode')
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8359320Z     Expected: visible
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8359830Z     Timeout: 10000ms
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8360390Z     Error: element(s) not found
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8360800Z 
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8361380Z     Call log:
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8362520Z     [2m  - Expect "toBeVisible" with timeout 10000ms[22m
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8363850Z     [2m  - waiting for getByText('Running in emulator mode')[22m
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8364500Z 
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8364540Z 
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8365600Z       35 |           const hostname = await page.evaluate(() => window.location.hostname);
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8366880Z       36 |           console.log(`[BROWSER] Hostname: ${hostname}`);
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8368670Z     > 37 |           await expect(page.getByText('Running in emulator mode')).toBeVisible({ timeout: 10000 });
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8372080Z          |                                                                    ^
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8372620Z       38 |         },
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8373230Z       39 |       },
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8374410Z       40 |     ],
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8375070Z         at Object.check (/Users/runner/work/wordcandy/wordcandy/tests/e2e/mvp/mvp.spec.ts:37:68)
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8376340Z         at TestStepHelper.step (/Users/runner/work/wordcandy/wordcandy/tests/e2e/helpers/test-step-helper.ts:39:7)
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8378320Z         at /Users/runner/work/wordcandy/wordcandy/tests/e2e/mvp/mvp.spec.ts:16:3
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8379410Z 
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8380620Z     Error Context: test-results/mvp-mvp-MVP-Walkthrough-chromium-retry1/error-context.md
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8381700Z 
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8383300Z     attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8391960Z     test-results/mvp-mvp-MVP-Walkthrough-chromium-retry1/trace.zip
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8394700Z     Usage:
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8394980Z 
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8396110Z         npx playwright show-trace test-results/mvp-mvp-MVP-Walkthrough-chromium-retry1/trace.zip
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8398170Z 
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8403810Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8404120Z 
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8406110Z     Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8408170Z 
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8408580Z     Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8409600Z 
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8410110Z     Locator: getByText('Running in emulator mode')
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8410670Z     Expected: visible
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8411680Z     Timeout: 10000ms
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8418190Z     Error: element(s) not found
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8418790Z 
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8418870Z     Call log:
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8419750Z     [2m  - Expect "toBeVisible" with timeout 10000ms[22m
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8421180Z     [2m  - waiting for getByText('Running in emulator mode')[22m
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8421580Z 
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8421590Z 
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8422390Z       35 |           const hostname = await page.evaluate(() => window.location.hostname);
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8425570Z       36 |           console.log(`[BROWSER] Hostname: ${hostname}`);
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8428620Z     > 37 |           await expect(page.getByText('Running in emulator mode')).toBeVisible({ timeout: 10000 });
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8429250Z          |                                                                    ^
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8429650Z       38 |         },
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8429940Z       39 |       },
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8430170Z       40 |     ],
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8430610Z         at Object.check (/Users/runner/work/wordcandy/wordcandy/tests/e2e/mvp/mvp.spec.ts:37:68)
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8431620Z         at TestStepHelper.step (/Users/runner/work/wordcandy/wordcandy/tests/e2e/helpers/test-step-helper.ts:39:7)
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8432260Z         at /Users/runner/work/wordcandy/wordcandy/tests/e2e/mvp/mvp.spec.ts:16:3
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8433230Z 
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8433620Z     Error Context: test-results/mvp-mvp-MVP-Walkthrough-chromium-retry2/error-context.md
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8434540Z 
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8434610Z   1 failed
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.8435420Z     [chromium] › tests/e2e/mvp/mvp.spec.ts:4:1 › MVP Walkthrough ───────────────────────────────────
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:49.9348420Z [33m[1m⚠ [22m[39m Script exited unsuccessfully (code 1)
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:50.4554170Z [36m[1mi  emulators:[22m[39m Shutting down emulators.
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:50.4653000Z [36m[1mi  auth:[22m[39m Stopping Authentication Emulator
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:50.4756800Z [36m[1mi  hub:[22m[39m Stopping emulator hub
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:50.4859740Z [36m[1mi  logging:[22m[39m Stopping Logging Emulator
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:50.4961930Z 
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:50.5064010Z [1m[31mError:[39m[22m Script "[1mnpm run test:e2e[22m" exited with code 1
+Playwright E2E Tests	Run E2E Tests with Emulator	2026-02-05T15:43:50.9293650Z ##[error]Process completed with exit code 1.
+Playwright E2E Tests	Upload Playwright report	﻿2026-02-05T15:43:50.9736470Z ##[group]Run actions/upload-artifact@v4
+Playwright E2E Tests	Upload Playwright report	2026-02-05T15:43:50.9737420Z with:
+Playwright E2E Tests	Upload Playwright report	2026-02-05T15:43:50.9737660Z   name: playwright-report
+Playwright E2E Tests	Upload Playwright report	2026-02-05T15:43:50.9737980Z   path: playwright-report/
+Playwright E2E Tests	Upload Playwright report	2026-02-05T15:43:50.9738200Z   retention-days: 30
+Playwright E2E Tests	Upload Playwright report	2026-02-05T15:43:50.9738500Z   if-no-files-found: warn
+Playwright E2E Tests	Upload Playwright report	2026-02-05T15:43:50.9739020Z   compression-level: 6
+Playwright E2E Tests	Upload Playwright report	2026-02-05T15:43:50.9739260Z   overwrite: false
+Playwright E2E Tests	Upload Playwright report	2026-02-05T15:43:50.9739490Z   include-hidden-files: false
+Playwright E2E Tests	Upload Playwright report	2026-02-05T15:43:50.9739900Z ##[endgroup]
+Playwright E2E Tests	Upload Playwright report	2026-02-05T15:43:51.8833630Z With the provided path, there will be 19 files uploaded
+Playwright E2E Tests	Upload Playwright report	2026-02-05T15:43:51.8834150Z Artifact name is valid!
+Playwright E2E Tests	Upload Playwright report	2026-02-05T15:43:51.8834520Z Root directory input is valid!
+Playwright E2E Tests	Upload Playwright report	2026-02-05T15:43:52.2638310Z Beginning upload of artifact content to blob storage
+Playwright E2E Tests	Upload Playwright report	2026-02-05T15:43:52.8059600Z Uploaded bytes 694482
+Playwright E2E Tests	Upload Playwright report	2026-02-05T15:43:52.8569270Z Finished uploading artifact content to blob storage!
+Playwright E2E Tests	Upload Playwright report	2026-02-05T15:43:52.8669910Z SHA256 digest of uploaded artifact zip is e9821bafbad407fd8fa19e1d5a6bb55cf31c4919d28bffc880a46178c50b8117
+Playwright E2E Tests	Upload Playwright report	2026-02-05T15:43:52.8775850Z Finalizing artifact upload
+Playwright E2E Tests	Upload Playwright report	2026-02-05T15:43:53.0122660Z Artifact playwright-report.zip successfully finalized. Artifact ID 5392698882
+Playwright E2E Tests	Upload Playwright report	2026-02-05T15:43:53.0146420Z Artifact playwright-report has been successfully uploaded! Final size is 694482 bytes. Artifact ID is 5392698882
+Playwright E2E Tests	Upload Playwright report	2026-02-05T15:43:53.0149510Z Artifact download URL: https://github.com/anicolao/wordcandy/actions/runs/21717910763/artifacts/5392698882
+Playwright E2E Tests	Post Checkout repository	﻿2026-02-05T15:43:53.0356890Z Post job cleanup.
+Playwright E2E Tests	Post Checkout repository	2026-02-05T15:43:53.2260870Z [command]/opt/homebrew/bin/git version
+Playwright E2E Tests	Post Checkout repository	2026-02-05T15:43:53.2534240Z git version 2.52.0
+Playwright E2E Tests	Post Checkout repository	2026-02-05T15:43:53.2637200Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/0ab7c8b7-6d91-4fe1-9682-9abe59453f89/.gitconfig'
+Playwright E2E Tests	Post Checkout repository	2026-02-05T15:43:53.2640100Z Temporarily overriding HOME='/Users/runner/work/_temp/0ab7c8b7-6d91-4fe1-9682-9abe59453f89' before making global git config changes
+Playwright E2E Tests	Post Checkout repository	2026-02-05T15:43:53.2642710Z Adding repository directory to the temporary git global config as a safe directory
+Playwright E2E Tests	Post Checkout repository	2026-02-05T15:43:53.2645120Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/wordcandy/wordcandy
+Playwright E2E Tests	Post Checkout repository	2026-02-05T15:43:53.2717010Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+Playwright E2E Tests	Post Checkout repository	2026-02-05T15:43:53.2789250Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Playwright E2E Tests	Post Checkout repository	2026-02-05T15:43:53.4661980Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Playwright E2E Tests	Post Checkout repository	2026-02-05T15:43:53.4764130Z http.https://github.com/.extraheader
+Playwright E2E Tests	Post Checkout repository	2026-02-05T15:43:53.4787320Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+Playwright E2E Tests	Post Checkout repository	2026-02-05T15:43:53.4867560Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Playwright E2E Tests	Post Checkout repository	2026-02-05T15:43:53.6200330Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Playwright E2E Tests	Post Checkout repository	2026-02-05T15:43:53.6446880Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Playwright E2E Tests	Complete job	﻿2026-02-05T15:43:53.8380350Z Cleaning up orphan processes
