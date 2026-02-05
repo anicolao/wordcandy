@@ -38,7 +38,9 @@ export const user = writable<User | null>(null);
 
 // Initialize Client-Side Services
 export const initFirebase = () => {
+  console.log('[FIREBASE] initFirebase called');
   if (typeof window !== "undefined") {
+    console.log(`[FIREBASE] Window exists. Hostname: ${location.hostname}`);
     analytics = getAnalytics(app);
     auth = getAuth(app);
 
@@ -47,6 +49,8 @@ export const initFirebase = () => {
       console.log("[FIREBASE] Connecting to Auth Emulator");
       // Port 9099 is default for Auth Emulator
       connectAuthEmulator(auth, "http://localhost:9099");
+    } else {
+      console.log(`[FIREBASE] Skipping Emulator. Hostname '${location.hostname}' does not match debug whitelist.`);
     }
 
     onAuthStateChanged(auth, (u) => {
