@@ -12,3 +12,7 @@ vite.config.js.timestamp-*
 playwright-report/
 test-results/
 .DS_Store
+
+# CI Artifacts
+ci_report/
+ci_log.txt

@@ -1,15 +1,34 @@
 # Test: MVP Walkthrough
 
-## Enter Gameplay
+## Landing Page
 
-![Enter Gameplay](./screenshots/000-02-gameplay.png)
+![Landing Page](./screenshots/000-00-landing.png)
 
 **Verifications:**
-
-- [x] URL is /play
-- [x] Header says Daily Challenge
-- [x] Board is visible
-- [x] Rack has 8 slots
-- [x] Refilled rack has tiles
+- [x] Title is WordCandy
+- [x] Sign In button is visible
+- [x] Emulator Banner is visible
 
 ---
+
+## Lobby (Signed In)
+
+![Lobby (Signed In)](./screenshots/001-01-lobby.png)
+
+**Verifications:**
+- [x] Play button is visible
+
+---
+
+## Enter Gameplay
+
+![Enter Gameplay](./screenshots/002-02-gameplay.png)
+
+**Verifications:**
+- [x] URL is /play
+- [x] Header says Daily Challenge
+- [x] Game container is visible
+- [x] Rack tiles are present (Logic Check)
+
+---
+

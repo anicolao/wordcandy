@@ -38,14 +38,25 @@ export const user = writable<User | null>(null);
 
 // Initialize Client-Side Services
 export const initFirebase = () => {
+  console.log('[FIREBASE] initFirebase called');
   if (typeof window !== "undefined") {
-    analytics = getAnalytics(app);
     auth = getAuth(app);
+    console.log(`[FIREBASE] Config - AuthDomain: ${firebaseConfig.authDomain ? 'SET' : 'MISSING'} (${firebaseConfig.authDomain})`);
 
     // Connect to Auth Emulator in Dev
-    if (location.hostname === "localhost") {
+    if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+      console.log("[FIREBASE] Connecting to Auth Emulator");
       // Port 9099 is default for Auth Emulator
       connectAuthEmulator(auth, "http://localhost:9099");
+    } else {
+      console.log(`[FIREBASE] Skipping Emulator. Hostname '${location.hostname}' does not match debug whitelist.`);
+    }
+
+    // Initialize Analytics (Safe Wrap)
+    try {
+      analytics = getAnalytics(app);
+    } catch (e) {
+      console.warn("[FIREBASE] Analytics failed to initialize", e);
     }
 
     onAuthStateChanged(auth, (u) => {
@@ -57,6 +68,9 @@ export const initFirebase = () => {
 // Auth Actions
 export const signInWithGoogle = async () => {
   if (!auth) return;
+
+
+
   const provider = new GoogleAuthProvider();
   try {
     await signInWithPopup(auth, provider);

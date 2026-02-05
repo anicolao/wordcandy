@@ -1,32 +1,33 @@
 <script lang="ts">
   import { T } from '@threlte/core';
   import { onMount } from 'svelte';
-  import { OrbitControls } from '@threlte/extras';
+  import { OrbitControls, interactivity } from '@threlte/extras';
   import CyberGrid from './CyberGrid.svelte';
 
+  interactivity();
+
   export let gridSize = 15;
-  export let rackMode = false;
-  export let frozen: string | null = null; // Pass frozen time down
+  // export let rackMode = false; // DEPRECATED
+  export let frozen: string | null = null; 
   
-  // Camera Controls
-  export let cameraPosition: [number, number, number] = [0, 15, 0.1];
-  export let cameraFov = 20;
-  export let cameraLookAt: [number, number, number] = [0, 0, 0];
+  // Camera Controls - Default to Unified Top-Down View
+  export let cameraPosition: [number, number, number] = [0, 45, 12]; 
+  export let cameraFov = 30;
+  export let cameraLookAt: [number, number, number] = [0, 0, 4]; // Look slightly towards rack
   export let enableControls = false;
 
   // Debug Controls
   export let gridColor = '#00ffff';
   export let gridBackgroundColor = '#2a2a2a';
   export let lightIntensity = 4.0;
+  export let showGrid = false; // Default to false (InfiniteBoard handles it)
 
   onMount(() => {
-    console.log('SCENE MOUNTED', { rackMode, cameraPosition, cameraFov });
+    console.log('SCENE MOUNTED', { cameraPosition, cameraFov });
   });
 </script>
 
-{#if !rackMode}
-    <T.PerspectiveCamera makeDefault position={[0, 15, 10]} fov={50} />
-{:else}
+    <!-- Unified Game Camera -->
     <T.PerspectiveCamera 
         makeDefault 
         position={cameraPosition} 
@@ -40,19 +41,15 @@
                 enableDamping 
                 target={cameraLookAt} 
                 on:change={({ target }) => {
-                    // target is OrbitControls instance. target.object is the camera.
                     const cam = target.object;
                     cameraPosition = [cam.position.x, cam.position.y, cam.position.z];
-                    // FOV might not change with OrbitControls unless zoomed? 
-                    // Actually OrbitControls dolly changes position, not FOV usually.
-                    // But let's sync it just in case.
                     if (cam.fov) cameraFov = cam.fov;
                 }}
             />
         {/if}
     </T.PerspectiveCamera>
-{/if}
 
+<!-- Key Light (Warm) -->
 <!-- Key Light (Warm) -->
 <T.DirectionalLight position={[5, 10, 5]} intensity={lightIntensity} castShadow color="#fff0dd"/>
 <!-- Fill Light (Cool) -->
@@ -62,15 +59,14 @@
 <T.AmbientLight intensity={1.0} />
 
 <!-- Cyber Background & Grid (Slightly below tiles at Y=0) -->
-<T.Group position={[0, -2, 0]}>
-    <CyberGrid color={gridColor} backgroundColor={gridBackgroundColor} {frozen} />
-</T.Group>
+{#if showGrid}
+    <T.Group position={[0, -2, 0]}>
+        <CyberGrid color={gridColor} backgroundColor={gridBackgroundColor} {frozen} />
+    </T.Group>
+{/if}
 
-<!-- Environment for gloss reflections -->
-<T.Mesh position={[0, 10, -10]}>
-    <T.SphereGeometry args={[5, 32, 32]} />
-    <T.MeshBasicMaterial color="#ffffff" />
-</T.Mesh>
+<!-- Environment for gloss reflections (Rack only) -->
+
 
 <slot />
 

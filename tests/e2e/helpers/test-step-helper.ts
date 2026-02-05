@@ -11,6 +11,7 @@ export interface StepOptions {
   description: string;
   verifications: Verification[];
   networkStatus?: "synced" | "offline" | "error" | "skip";
+  snapshotOptions?: { mask?: Array<any> };
 }
 
 interface DocStep {
@@ -26,7 +27,7 @@ export class TestStepHelper {
   constructor(
     private page: Page,
     private testInfo: TestInfo,
-  ) {}
+  ) { }
 
   setMetadata(title: string, description: string) {
     // Ideally store this for the doc header
@@ -48,7 +49,10 @@ export class TestStepHelper {
     // 4. Capture & Verify (Zero-Pixel Tolerance)
     // This will check against the baseline in 'screenshots/{filename}'.
     // If the file doesn't exist, it will fail (unless --update-snapshots is used).
-    await expect(this.page).toHaveScreenshot(filename.replace(/\.png$/, ""));
+    await expect(this.page).toHaveScreenshot(
+      filename.replace(/\.png$/, ""),
+      options.snapshotOptions
+    );
 
     // 5. Record for Docs
     this.steps.push({

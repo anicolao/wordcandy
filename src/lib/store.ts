@@ -1,8 +1,34 @@
 import { configureStore } from "@reduxjs/toolkit";
 import type { Middleware } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { gameReducer } from "./reducers/game";
 import { authReducer } from "./reducers/auth";
 import { writable } from "svelte/store";
+
+// Drag Slice
+interface DragState {
+  draggingTileId: string | null;
+}
+
+const initialDragState: DragState = {
+  draggingTileId: null,
+};
+
+const dragSlice = createSlice({
+  name: 'drag',
+  initialState: initialDragState,
+  reducers: {
+    startDrag: (state, action: PayloadAction<string>) => {
+      state.draggingTileId = action.payload;
+    },
+    stopDrag: (state) => {
+      state.draggingTileId = null;
+    }
+  }
+});
+
+export const { startDrag, stopDrag } = dragSlice.actions;
+export const dragReducer = dragSlice.reducer;
 
 // Event Sourcing Middleware (Simplified for MVP)
 const eventSourcingMiddleware: Middleware = (store) => (next) => (action) => {
@@ -25,6 +51,7 @@ function createStore() {
     reducer: {
       game: gameReducer,
       auth: authReducer,
+      drag: dragReducer,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(eventSourcingMiddleware),
