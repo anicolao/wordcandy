@@ -27,6 +27,12 @@ test("MVP Walkthrough", async ({ page }, testInfo) => {
             page.getByRole("button", { name: "Sign in with Google" }),
           ).toBeVisible(),
       },
+      // Verify Emulator Banner is present (Parity check)
+      {
+        spec: "Emulator Banner is visible",
+        check: async () =>
+          await expect(page.getByText('Running in emulator mode')).toBeVisible({ timeout: 10000 }),
+      },
     ],
   });
 

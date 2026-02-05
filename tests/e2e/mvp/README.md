@@ -7,6 +7,7 @@
 **Verifications:**
 - [x] Title is WordCandy
 - [x] Sign In button is visible
+- [x] Emulator Banner is visible
 
 ---
 
