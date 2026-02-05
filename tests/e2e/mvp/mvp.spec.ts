@@ -30,7 +30,7 @@ test("MVP Walkthrough", async ({ page }, testInfo) => {
       {
         spec: "Game container is visible",
         check: async () =>
-          await expect(page.locator(".game-wrapper")).toBeVisible(),
+          await expect(page.locator(".game-wrapper canvas")).toBeVisible(),
       },
       {
         spec: "Rack tiles are present (Logic Check)",

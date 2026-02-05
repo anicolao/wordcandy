@@ -51,7 +51,7 @@
 
 <!-- Key Light (Warm) -->
 <!-- Key Light (Warm) -->
-<T.DirectionalLight position={[5, 10, 5]} intensity={lightIntensity} castShadow={!frozen} color="#fff0dd"/>
+<T.DirectionalLight position={[5, 10, 5]} intensity={lightIntensity} castShadow color="#fff0dd"/>
 <!-- Fill Light (Cool) -->
 <T.DirectionalLight position={[-8, 5, -5]} intensity={3.0} color="#cceeff" />
 <!-- Rim Light (Sharp Cyan) -->

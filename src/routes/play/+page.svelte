@@ -51,7 +51,8 @@
         // Auto-Initialize Local User if missing
         if (!player && $store.auth.uid === 'local-user-123') {
             console.log('Auto-initializing local player...');
-            store.dispatch({ type: 'game/joinGame', payload: { uid: 'local-user-123', name: 'Player 1' } });
+            const seed = new URLSearchParams(window.location.search).get('seed') || undefined;
+            store.dispatch({ type: 'game/joinGame', payload: { uid: 'local-user-123', name: 'Player 1', seed } });
             // Reducer expects { playerId }, not { uid, count }
             store.dispatch({ type: 'game/drawTiles', payload: { playerId: 'local-user-123' } });
         }
@@ -107,7 +108,8 @@
             const f4 = pane.addFolder({ title: 'Actions' });
             f4.addButton({ title: 'Deal Hand' }).on('click', () => {
                  console.log('Forcing Deal Hand...');
-                 store.dispatch({ type: 'game/joinGame', payload: { uid: 'local-user-123', name: 'Player 1' } });
+                 const seed = new URLSearchParams(window.location.search).get('seed') || undefined;
+                 store.dispatch({ type: 'game/joinGame', payload: { uid: 'local-user-123', name: 'Player 1', seed } });
                  store.dispatch({ type: 'game/drawTiles', payload: { playerId: 'local-user-123' } });
             });
 

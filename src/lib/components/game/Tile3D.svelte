@@ -30,27 +30,35 @@
 
 <T.Group {position} {rotation} {scale} {...$$restProps}>
   <!-- Glassy Base -->
-  {#if !frozen}
   <T.Mesh
     {geometry}
     interactive
     on:pointerdown={(e) => dispatch('pointerdown', e)}
   >
-    <!-- Game Mode: High Fidelity Physical Material -->
-    <T.MeshPhysicalMaterial 
-      color={color} 
-      transmission={transmission} 
-      thickness={thickness} 
-      roughness={roughness}
-      ior={1.5}
-      envMapIntensity={2.0}
-      attenuationColor={color}
-      attenuationDistance={1.2}
-      clearcoat={1.0}
-      clearcoatRoughness={0.1}
-      transparent
-      opacity={1}
-    />
+    {#if frozen}
+      <!-- Frozen Mode: Deterministic Matte Standard Material (Solid, Visible, No Reflection) -->
+      <T.MeshStandardMaterial
+        color="#cccccc"
+        roughness={1.0}
+        metalness={0.0}
+      />
+    {:else}
+      <!-- Game Mode: High Fidelity Physical Material -->
+      <T.MeshPhysicalMaterial 
+        color={color} 
+        transmission={transmission} 
+        thickness={thickness} 
+        roughness={roughness}
+        ior={1.5}
+        envMapIntensity={2.0}
+        attenuationColor={color}
+        attenuationDistance={1.2}
+        clearcoat={1.0}
+        clearcoatRoughness={0.1}
+        transparent
+        opacity={1}
+      />
+    {/if}
   </T.Mesh>
 
   <!-- Letter: On Surface & Bold -->
@@ -78,7 +86,6 @@
     anchorY="middle"
     depth={0.05}
   />
-  {/if}
   {/if}
 </T.Group>
 

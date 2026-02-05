@@ -218,12 +218,17 @@ const gameSlice = createSlice({
         }
       }
     },
-    joinGame: (state, action: PayloadAction<{ uid: string; name?: string }>) => {
-      const { uid } = action.payload;
-      console.log("REDUCER: joinGame", uid);
+    joinGame: (state, action: PayloadAction<{ uid: string; name?: string; seed?: string }>) => {
+      const { uid, seed } = action.payload;
+      console.log("REDUCER: joinGame", uid, seed ? `(Seed: ${seed})` : "(Random)");
 
       // Lazy Init: If bag is empty, fill it (assuming game hasn't truly started)
       if (state.bag.length === 0 && Object.keys(state.players).length === 0) {
+        // Setup RNG (Seeded or Random)
+        const rng = seed
+          ? new Seeder(seed).random.bind(new Seeder(seed))
+          : Math.random;
+
         console.log("REDUCER: Lazy initializing bag for first joiner");
         if (TILE_DISTRIBUTION) {
           Object.entries(TILE_DISTRIBUTION).forEach(([letter, count]) => {
@@ -235,7 +240,7 @@ const gameSlice = createSlice({
               });
             }
           });
-          state.bag = shuffle(state.bag, Math.random);
+          state.bag = shuffle(state.bag, rng);
         }
       }
 
