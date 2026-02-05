@@ -30,8 +30,12 @@ test("MVP Walkthrough", async ({ page }, testInfo) => {
       // Verify Emulator Banner is present (Parity check)
       {
         spec: "Emulator Banner is visible",
-        check: async () =>
-          await expect(page.getByText('Running in emulator mode')).toBeVisible({ timeout: 10000 }),
+        check: async () => {
+          // DEBUG: Log hostname to confirm emulator logic triggers
+          const hostname = await page.evaluate(() => window.location.hostname);
+          console.log(`[BROWSER] Hostname: ${hostname}`);
+          await expect(page.getByText('Running in emulator mode')).toBeVisible({ timeout: 10000 });
+        },
       },
     ],
   });

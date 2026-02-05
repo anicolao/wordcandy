@@ -43,7 +43,7 @@ export const initFirebase = () => {
     auth = getAuth(app);
 
     // Connect to Auth Emulator in Dev
-    if (location.hostname === "localhost") {
+    if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
       // Port 9099 is default for Auth Emulator
       connectAuthEmulator(auth, "http://localhost:9099");
     }
