@@ -41,9 +41,6 @@ test("MVP Walkthrough", async ({ page }, testInfo) => {
       // We rely on the DOM proxies above for state verification, and the
       // snapshot below for frame stability (Black Box).
     ],
-    snapshotOptions: {
-      mask: [page.locator(".game-header")],
-    },
   });
 
   tester.generateDocs();

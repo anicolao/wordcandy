@@ -35,14 +35,6 @@
     interactive
     on:pointerdown={(e) => dispatch('pointerdown', e)}
   >
-    {#if frozen}
-      <!-- Frozen Mode: Deterministic Matte Standard Material (Solid, Visible, No Reflection) -->
-      <T.MeshStandardMaterial
-        color="#cccccc"
-        roughness={1.0}
-        metalness={0.0}
-      />
-    {:else}
       <!-- Game Mode: High Fidelity Physical Material -->
       <T.MeshPhysicalMaterial 
         color={color} 
@@ -58,7 +50,6 @@
         transparent
         opacity={1}
       />
-    {/if}
   </T.Mesh>
 
   <!-- Letter: On Surface & Bold -->
