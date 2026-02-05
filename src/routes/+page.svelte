@@ -5,8 +5,15 @@
 
     onMount(() => {
         initFirebase();
+        console.log('[PAGE] Mounted');
     });
+
+    $: console.log('[PAGE] User State:', $user);
 </script>
+
+<svelte:head>
+    <title>WordCandy</title>
+</svelte:head>
 
 <div class="glass-panel" style="max-width: 400px; margin: 100px auto; text-align: center;">
     <h1 class="neon-text" style="color: var(--color-banana-yellow); font-size: 2rem;">WordCandy</h1>
