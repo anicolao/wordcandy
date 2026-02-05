@@ -156,8 +156,8 @@
   $: spotlightPos = draggingId && ghostPos ? { x: ghostPos[0], z: ghostPos[2] } : pointerPos;
 </script>
 
-<div class="game-wrapper glass-panel">
-  <Canvas renderMode="always">
+<div class="game-wrapper glass-panel" style:background={frozen ? '#000' : 'radial-gradient(circle at center, #111, #000)'}>
+  <Canvas renderMode="always" antialias={!frozen}>
     <Scene 
         bind:cameraPosition={camPos}
         bind:cameraFov={camFov}
@@ -274,6 +274,7 @@
     height: 100%; /* Fill container */
     overflow: hidden;
     position: relative;
-    background: radial-gradient(circle at center, #111, #000);
+    position: relative;
+    /* Background handled inline for frozen support */
   }
 </style>
