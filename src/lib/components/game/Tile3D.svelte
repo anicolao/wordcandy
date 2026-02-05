@@ -2,6 +2,7 @@
   import { T } from '@threlte/core';
   import { Text } from '@threlte/extras';
   import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
+  import { createEventDispatcher } from 'svelte';
 
   export let letter = '';
   export let value = 0;
@@ -12,9 +13,11 @@
   export let opacity = 0.2; // Default Inner Glow Opacity
   export let intensity = 0.5; // Default Internal Light Intensity
 
+  const dispatch = createEventDispatcher();
+
   // Reactive material props to ensure updates work
   $: materialOpacity = Number(opacity);
-  $: transmission = 1 - materialOpacity; // Opacity 1 = Solid (0 trans), Opacity 0 = Clear (1 trans)
+  $: transmission = 1 - materialOpacity; 
 
   // Thicker "Hard Candy" geometry with rounder corners
   // Radius reduced to 0.12 for "sharper dropoff" as requested
@@ -31,7 +34,11 @@
 
   <!-- Tile Base: High Refraction Acrylic -->
   <!-- Transmission controls "glassiness". High Opacity = Low Transmission -->
-  <T.Mesh {geometry}>
+  <T.Mesh 
+    {geometry}
+    interactive
+    on:pointerdown={(e) => dispatch('pointerdown', e)}
+  >
     <T.MeshPhysicalMaterial
       color={color}
       transmission={transmission}
@@ -50,9 +57,11 @@
 
   <!-- Letter: On Surface & Bold -->
   <!-- Surface Z calculation: 0.425 / 2 = 0.2125. Placed at 0.225 for slight relief -->
+  <!-- Letter: On Surface & Bold -->
+  <!-- Surface Z calculation: 0.425 / 2 = 0.2125. Placed at 0.225 for slight relief -->
   <Text
     text={letter}
-    position={[0, 0.05, 0.225]} 
+    position={[0, 0.05, 0.26]} 
     fontSize={0.65}
     fontWeight="bold"
     color="#000000"
@@ -60,11 +69,12 @@
     anchorY="middle"
     depth={0.05}
   />
-
-  <!-- Value: Bottom Right (Moved Inward) -->
+  
+  <!-- Value: Bottom Right -->
+  {#if value > 0}
   <Text
-    text={value.toString()}
-    position={[0.3, -0.3, 0.225]}
+    text={String(value)}
+    position={[0.3, -0.3, 0.26]}
     fontSize={0.25}
     fontWeight="bold"
     color="#000000"
@@ -72,4 +82,6 @@
     anchorY="middle"
     depth={0.05}
   />
+  {/if}
 </T.Group>
+

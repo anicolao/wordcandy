@@ -1,44 +1,33 @@
 <script lang="ts">
   import { T } from '@threlte/core';
   import { onMount } from 'svelte';
-  import { OrbitControls } from '@threlte/extras';
+  import { OrbitControls, interactivity } from '@threlte/extras';
   import CyberGrid from './CyberGrid.svelte';
 
+  interactivity();
+
   export let gridSize = 15;
-  export let rackMode = false;
-  export let frozen: string | null = null; // Pass frozen time down
+  // export let rackMode = false; // DEPRECATED
+  export let frozen: string | null = null; 
   
-  // Camera Controls
-  export let cameraPosition: [number, number, number] = [0, 15, 0.1];
-  export let cameraFov = 20;
-  export let cameraLookAt: [number, number, number] = [0, 0, 0];
+  // Camera Controls - Default to Unified Top-Down View
+  export let cameraPosition: [number, number, number] = [0, 45, 12]; 
+  export let cameraFov = 30;
+  export let cameraLookAt: [number, number, number] = [0, 0, 4]; // Look slightly towards rack
   export let enableControls = false;
 
   // Debug Controls
   export let gridColor = '#00ffff';
   export let gridBackgroundColor = '#2a2a2a';
   export let lightIntensity = 4.0;
-  export let showGrid = true; // Default to true (Rack)
+  export let showGrid = false; // Default to false (InfiniteBoard handles it)
 
   onMount(() => {
-    console.log('SCENE MOUNTED', { rackMode, cameraPosition, cameraFov });
+    console.log('SCENE MOUNTED', { cameraPosition, cameraFov });
   });
 </script>
 
-{#if !rackMode}
-    <!-- Board Camera: Top Down -->
-    <T.PerspectiveCamera 
-        makeDefault 
-        position={[0, 40, 0]} 
-        fov={50} 
-        on:create={({ ref }) => ref.lookAt(0, 0, 0)}
-    >
-        {#if enableControls}
-            <OrbitControls enableDamping target={[0,0,0]} />
-        {/if}
-    </T.PerspectiveCamera>
-{:else}
-    <!-- Rack Camera: Angled -->
+    <!-- Unified Game Camera -->
     <T.PerspectiveCamera 
         makeDefault 
         position={cameraPosition} 
@@ -59,8 +48,8 @@
             />
         {/if}
     </T.PerspectiveCamera>
-{/if}
 
+<!-- Key Light (Warm) -->
 <!-- Key Light (Warm) -->
 <T.DirectionalLight position={[5, 10, 5]} intensity={lightIntensity} castShadow color="#fff0dd"/>
 <!-- Fill Light (Cool) -->
@@ -77,12 +66,7 @@
 {/if}
 
 <!-- Environment for gloss reflections (Rack only) -->
-{#if rackMode}
-    <T.Mesh position={[0, 10, -10]}>
-        <T.SphereGeometry args={[5, 32, 32]} />
-        <T.MeshBasicMaterial color="#ffffff" />
-    </T.Mesh>
-{/if}
+
 
 <slot />
 

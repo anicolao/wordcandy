@@ -28,19 +28,12 @@ test("MVP Walkthrough", async ({ page }, testInfo) => {
           ),
       },
       {
-        spec: "Board is visible",
+        spec: "Game container is visible",
         check: async () =>
-          await expect(page.locator(".board-wrapper")).toBeVisible(),
+          await expect(page.locator(".game-wrapper canvas")).toBeVisible(),
       },
-      {
-        spec: "Rack has 8 slots",
-        check: async () =>
-          await expect(page.locator(".rack-slot")).toHaveCount(8),
-      },
-      {
-        spec: "Refilled rack has tiles",
-        check: async () => await expect(page.locator(".tile")).toHaveCount(8),
-      },
+      // Note: 3D Tiles are not DOM elements, so we skip DOM count checks.
+      // The visual snapshot below will verify the board and rack state.
     ],
   });
 

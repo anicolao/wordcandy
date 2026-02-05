@@ -6,8 +6,10 @@
   export let divisions = 40;
   export let color = '#00ffff';
   export let backgroundColor = '#1a1a1a';
+  export let frozen: string | null = null; 
+  export let width = 60;
+  export let height = 60;
 
-  export let frozen: string | null = null; // New frozen prop
   let time = 0;
 
   const vertexShader = `
@@ -130,10 +132,11 @@
       time += delta;
     }
   });
+
 </script>
 
 <T.Mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1, -5]}>
-  <T.PlaneGeometry args={[60, 60]} />
+  <T.PlaneGeometry args={[width, height]} />
   <T.ShaderMaterial
     {vertexShader}
     {fragmentShader}

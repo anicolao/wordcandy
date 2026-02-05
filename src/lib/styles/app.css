@@ -11,7 +11,10 @@ body {
   background-color: var(--color-deep-black);
   color: white;
   font-family: var(--font-main);
-  overflow: hidden; /* Prevent scroll on 3D views */
+  overflow: hidden;
+  /* Prevent scroll on 3D views */
+  touch-action: none;
+  /* Prevent browser handling of gestures (scroll/zoom) */
 }
 
 a {

@@ -5,8 +5,8 @@
 </script>
 
 <div class="board-wrapper glass-panel">
-  <Canvas frameloop="always">
-    <Scene rackMode={false} showGrid={false} enableControls={false}>
+  <Canvas>
+    <Scene showGrid={false} enableControls={false}>
       <InfiniteBoard />
     </Scene>
   </Canvas>

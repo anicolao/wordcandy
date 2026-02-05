@@ -153,7 +153,7 @@ const gameSlice = createSlice({
         return;
       }
 
-      // 2. Debug/Test Mode: Create tile on the fly
+      // 2. Debug/Test Mode
       if (tileId.startsWith("debug-")) {
         const letter = tileId.split("-")[1] || "?";
         state.board[key] = {
@@ -164,8 +164,7 @@ const gameSlice = createSlice({
         return;
       }
 
-      // 3. Real Mode: Find tile in current player's rack
-      // (Simplified: check all players for now, or just currentPlayer)
+      // 3. Search in Racks (Rack -> Board)
       let foundPlayerId: string | undefined;
       let tileIndex = -1;
 
@@ -179,21 +178,81 @@ const gameSlice = createSlice({
       }
 
       if (foundPlayerId && tileIndex !== -1) {
+        // Rack -> Board
         const tile = state.players[foundPlayerId].rack[tileIndex];
-        // Remove from rack
         state.players[foundPlayerId].rack.splice(tileIndex, 1);
-        // Add to board
         state.board[key] = tile;
-        console.log(`REDUCER: Moved tile ${tile.letter} from ${foundPlayerId} to board ${key}`);
-      } else {
-        console.error("REDUCER: Tile not found in any rack", tileId);
+        console.log(`REDUCER: Moved tile ${tile.letter} from Rack to ${key}`);
+        return;
       }
+
+      // 4. Search on Board (Board -> Board)
+      const oldKey = Object.keys(state.board).find(k => state.board[k].id === tileId);
+      if (oldKey) {
+        const tile = state.board[oldKey];
+        delete state.board[oldKey];
+        state.board[key] = tile;
+        console.log(`REDUCER: Moved tile ${tile.letter} from ${oldKey} to ${key}`);
+        return;
+      }
+
+      console.error("REDUCER: Tile not found in any rack or on board", tileId);
     },
     returnTileToRack: (state, action: PayloadAction<{ tileId: string }>) => {
-      // Logic to return tile
+      const { tileId } = action.payload;
+      // Find on board
+      const boardKey = Object.keys(state.board).find(k => state.board[k].id === tileId);
+      if (boardKey) {
+        const tile = state.board[boardKey];
+        delete state.board[boardKey];
+
+        // Add to current player's rack
+        const pid = state.currentPlayerId;
+        if (pid && state.players[pid]) {
+          state.players[pid].rack.push(tile);
+          console.log(`REDUCER: Returned ${tile.letter} from board to player ${pid}`);
+        } else {
+          // Fallback: first player
+          const firstPid = Object.keys(state.players)[0];
+          if (firstPid) state.players[firstPid].rack.push(tile);
+        }
+      }
+    },
+    joinGame: (state, action: PayloadAction<{ uid: string; name?: string }>) => {
+      const { uid } = action.payload;
+      console.log("REDUCER: joinGame", uid);
+
+      // Lazy Init: If bag is empty, fill it (assuming game hasn't truly started)
+      if (state.bag.length === 0 && Object.keys(state.players).length === 0) {
+        console.log("REDUCER: Lazy initializing bag for first joiner");
+        if (TILE_DISTRIBUTION) {
+          Object.entries(TILE_DISTRIBUTION).forEach(([letter, count]) => {
+            for (let i = 0; i < count; i++) {
+              state.bag.push({
+                id: `${letter}-${i}`,
+                letter,
+                value: TILE_VALUES[letter] || 0,
+              });
+            }
+          });
+          state.bag = shuffle(state.bag, Math.random);
+        }
+      }
+
+      if (!state.players[uid]) {
+        state.players[uid] = {
+          id: uid,
+          rack: [],
+          score: 0,
+        };
+        // Set as current player if none exists
+        if (!state.currentPlayerId) {
+          state.currentPlayerId = uid;
+        }
+        console.log(`REDUCER: Player ${uid} joined.`);
+      }
     },
     submitWord: (state) => {
-      // Logic to validate and finalize
       state.submitted = true;
     },
   },
@@ -201,6 +260,7 @@ const gameSlice = createSlice({
 
 export const {
   initializeGame,
+  joinGame,
   drawTiles,
   placeTile,
   returnTileToRack,
