@@ -11,7 +11,10 @@
   export let scale: number | [number, number, number] = 1;
   export let color = "#FFE135"; // Default Banana Yellow
   export let opacity = 0.2; // Default Inner Glow Opacity
-  export let intensity = 0.5; // Default Internal Light Intensity
+  export let frozen: string | null = null;
+
+  const thickness = 0.425;
+  const roughness = 0.2;
 
   const dispatch = createEventDispatcher();
 
