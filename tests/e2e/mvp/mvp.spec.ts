@@ -27,6 +27,27 @@ test("MVP Walkthrough", async ({ page }, testInfo) => {
             page.getByRole("button", { name: "Sign in with Google" }),
           ).toBeVisible(),
       },
+      // Remove Firebase Emulator Warning banner if present to ensure consistent snapshots
+      {
+        spec: "Emulator Warning is hidden",
+        check: async () =>
+          await page.evaluate(() => {
+            const warningCallback = (node: Element) => {
+              if (node.shadowRoot) {
+                node.shadowRoot.querySelectorAll('*').forEach(warningCallback);
+              }
+              if ((node.textContent || '').includes('Running in emulator mode') &&
+                (node.textContent || '').length < 300) { // Limit to avoid hitting body/html
+                console.log('[BROWSER] Found Banner:', node.tagName, node.className);
+                node.remove();
+                // Also hard-hide potential Firebase wrappers
+                const firebaseEl = document.querySelector('.firebase-emulator-warning');
+                if (firebaseEl) firebaseEl.remove();
+              }
+            };
+            document.querySelectorAll('body *').forEach(warningCallback);
+          }),
+      },
     ],
   });
 
