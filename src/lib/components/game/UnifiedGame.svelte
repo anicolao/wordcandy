@@ -156,7 +156,7 @@
   $: spotlightPos = draggingId && ghostPos ? { x: ghostPos[0], z: ghostPos[2] } : pointerPos;
 </script>
 
-<div class="game-wrapper glass-panel" style:background={frozen ? '#000' : 'radial-gradient(circle at center, #111, #000)'}>
+<div class="game-wrapper glass-panel" style:background={'radial-gradient(circle at center, #111, #000)'}>
   <Canvas renderMode="always" antialias={!frozen}>
 
     <Scene 

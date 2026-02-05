@@ -221,6 +221,6 @@
         top: 70px; /* Below header (60px) + gap */
         right: 20px;
         width: 280px; /* Standard Tweakpane width */
-        z-index: 100;
+        z-index: 1000;
     }
 </style>
