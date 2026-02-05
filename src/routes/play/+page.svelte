@@ -122,7 +122,9 @@
 
 <div class="game-container">
     <!-- Container for specific positioning of Tweakpane -->
+    {#if !frozen}
     <div id="debug-container"></div>
+    {/if}
 
     <header class="game-header">
         <h2 class="neon-text" style="margin: 0;">Daily Challenge</h2>

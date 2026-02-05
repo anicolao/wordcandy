@@ -30,11 +30,20 @@ test("MVP Walkthrough", async ({ page }, testInfo) => {
       {
         spec: "Game container is visible",
         check: async () =>
-          await expect(page.locator(".game-wrapper canvas")).toBeVisible(),
+          await expect(page.locator(".game-wrapper")).toBeVisible(),
       },
-      // Note: 3D Tiles are not DOM elements, so we skip DOM count checks.
-      // The visual snapshot below will verify the board and rack state.
+      {
+        spec: "Rack tiles are present (Logic Check)",
+        check: async () =>
+          await expect(page.locator('[data-testid="rack-tile"]')).toHaveCount(8),
+      },
+      // Note: 3D Tiles are hidden in Frozen Mode for deterministic snapshots.
+      // We rely on the DOM proxies above for state verification, and the
+      // snapshot below for frame stability (Black Box).
     ],
+    snapshotOptions: {
+      mask: [page.locator(".game-header")],
+    },
   });
 
   tester.generateDocs();

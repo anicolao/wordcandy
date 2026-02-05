@@ -8,6 +8,7 @@
 - [x] URL is /play
 - [x] Header says Daily Challenge
 - [x] Game container is visible
+- [x] Rack tiles are present (Logic Check)
 
 ---
 

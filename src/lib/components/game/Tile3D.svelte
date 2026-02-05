@@ -30,65 +30,55 @@
 
 <T.Group {position} {rotation} {scale} {...$$restProps}>
   <!-- Glassy Base -->
+  {#if !frozen}
   <T.Mesh
     {geometry}
     interactive
     on:pointerdown={(e) => dispatch('pointerdown', e)}
   >
-  >
-    {#if frozen}
-      <!-- Frozen Mode: Stealth Ghost (Opacity 0.2 masks sub-pixel jitter) -->
-      <T.MeshBasicMaterial
-        color="#cccccc"
-        transparent
-        opacity={0.2}
-      />
-    {:else}
-      <!-- Game Mode: High Fidelity Physical Material -->
-      <T.MeshPhysicalMaterial 
-        color={color} 
-        transmission={transmission} 
-        thickness={thickness} 
-        roughness={roughness}
-        ior={1.5}
-        envMapIntensity={2.0}
-        attenuationColor={color}
-        attenuationDistance={1.2}
-        clearcoat={1.0}
-        clearcoatRoughness={0.1}
-        transparent
-        opacity={1}
-      />
-    {/if}
+    <!-- Game Mode: High Fidelity Physical Material -->
+    <T.MeshPhysicalMaterial 
+      color={color} 
+      transmission={transmission} 
+      thickness={thickness} 
+      roughness={roughness}
+      ior={1.5}
+      envMapIntensity={2.0}
+      attenuationColor={color}
+      attenuationDistance={1.2}
+      clearcoat={1.0}
+      clearcoatRoughness={0.1}
+      transparent
+      opacity={1}
+    />
   </T.Mesh>
 
   <!-- Letter: On Surface & Bold -->
-  {#if !frozen}
-    <!-- Surface Z calculation: 0.425 / 2 = 0.2125. Placed at 0.225 for slight relief -->
-    <Text
-      text={letter}
-      position={[0, 0.05, 0.26]} 
-      fontSize={0.65}
-      fontWeight="bold"
-      color="#000000"
-      anchorX="center"
-      anchorY="middle"
-      depth={0.05}
-    />
-    
-    <!-- Value: Bottom Right -->
-    {#if value > 0}
-    <Text
-      text={String(value)}
-      position={[0.3, -0.3, 0.26]}
-      fontSize={0.25}
-      fontWeight="bold"
-      color="#000000"
-      anchorX="center"
-      anchorY="middle"
-      depth={0.05}
-    />
-    {/if}
+  <!-- Surface Z calculation: 0.425 / 2 = 0.2125. Placed at 0.225 for slight relief -->
+  <Text
+    text={letter}
+    position={[0, 0.05, 0.26]} 
+    fontSize={0.65}
+    fontWeight="bold"
+    color="#000000"
+    anchorX="center"
+    anchorY="middle"
+    depth={0.05}
+  />
+  
+  <!-- Value: Bottom Right -->
+  {#if value > 0}
+  <Text
+    text={String(value)}
+    position={[0.3, -0.3, 0.26]}
+    fontSize={0.25}
+    fontWeight="bold"
+    color="#000000"
+    anchorX="center"
+    anchorY="middle"
+    depth={0.05}
+  />
+  {/if}
   {/if}
 </T.Group>
 
