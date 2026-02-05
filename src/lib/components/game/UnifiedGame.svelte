@@ -151,7 +151,7 @@
 </script>
 
 <div class="game-wrapper glass-panel">
-  <Canvas renderMode="always" shadows={!frozen} antialias={!frozen}>
+  <Canvas renderMode="always">
     <Scene 
         bind:cameraPosition={camPos}
         bind:cameraFov={camFov}
