@@ -54,18 +54,18 @@ test("MVP Walkthrough", async ({ page }, testInfo) => {
   const emulatorUI = popup.locator('.js-new-account, .js-reuse-account').first();
   await emulatorUI.waitFor({ state: 'visible', timeout: 10000 });
 
-  if (await popup.locator('.js-reuse-account').count() > 0) {
-    console.log('Clicking Existing Account');
-    // Click the first account's button (usually the list item itself or a button inside)
-    // Based on HTML dump: .js-reuse-account allows click
-    await popup.locator('.js-reuse-account').first().click();
-  } else {
-    console.log('Creating New Account');
+  // Always create a new account to ensure deterministic display name "Test User"
+  if (await popup.locator('.js-new-account').isVisible()) {
+    console.log('Creating New Account (Enforced)');
     await popup.locator('.js-new-account').click();
 
     const autogen = popup.locator('#autogen-button');
     await autogen.waitFor({ state: 'visible' });
     await autogen.click();
+
+    // Overwrite the random display name with a fixed one for deterministic snapshots
+    const displayNameInput = popup.locator('input[id="display-name-input"]');
+    await displayNameInput.fill('Test User');
 
     await popup.locator('#sign-in').click();
   }
